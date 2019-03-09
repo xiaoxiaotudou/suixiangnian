@@ -1,0 +1,15 @@
+<view class="bill-wrapper">
+  <scroll-view scroll-x class="bg-white nav">
+    <view class='flex text-center'>
+      <view class="cu-item flex-sub {{index == selectedIndex ? 'text-orange cur' : ''}}" wx:for="{{bills}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+        {{bills[index]}}
+      </view>
+    </view>
+  </scroll-view>
+  <custom-revenue wx:if="{{revenueSelected}}"></custom-revenue>
+  <custom-expenditure wx:if="{{expenditureSelected}}"></custom-expenditure>
+  <custom-bill wx:if="{{billSelected}}"></custom-bill>
+</view>
+<i-modal visible="{{ showDialog }}" bind:ok="confirmDialog" bind:cancel="cancelDialog">
+  <view>当前页面数据未保存，是否继续？</view>
+</i-modal>

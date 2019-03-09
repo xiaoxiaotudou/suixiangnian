@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/bill/bill",
+    "pages/index/index",
+    "pages/input/input",
+    "pages/output/output",
+    "pages/search/search",
+    "pages/profile/profile",
+    "pages/message/message",
+    "pages/share/share",
+    "pages/publish/publish"
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/common/profile_unactive.png",
+        "selectedIconPath": "images/common/profile_unactive.png"
+      },
+      {
+        "pagePath": "pages/share/share",
+        "text": "分享",
+        "iconPath": "images/common/profile_unactive.png",
+        "selectedIconPath": "images/common/profile_unactive.png"
+      },
+      {
+        "pagePath": "pages/publish/publish",
+        "text": "发布",
+        "iconPath": "images/common/profile_unactive.png",
+        "selectedIconPath": "images/common/profile_unactive.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "images/common/profile_unactive.png",
+        "selectedIconPath": "images/common/profile_unactive.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/common/profile_unactive.png",
+        "selectedIconPath": "images/common/profile_unactive.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "位置信息将用于为你精准匹配"
+    }
+  }
+}

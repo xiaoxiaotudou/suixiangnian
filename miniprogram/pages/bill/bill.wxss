@@ -1,0 +1,14 @@
+@import "../../style/colorui/colorui.wxss";
+@import "../../style/colorui/icon.wxss";
+@import "../../style/common.wxss";
+
+.bill-wrapper {
+  height: 100vh;
+  width: 100%;
+}
+
+.bill-item {
+  border: 1rpx solid red;
+  width: 350rpx;
+  height: 180rpx;
+}

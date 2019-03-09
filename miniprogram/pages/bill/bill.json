@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "custom-revenue": "../../components/custom/revenue/revenue",
+    "custom-expenditure": "../../components/custom/expenditure/expenditure",
+    "custom-bill": "../../components/custom/bill/bill",
+    "i-modal": "../../components/iview//modal/index"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#019EEF",
+  "navigationBarTitleText": "账单管理",
+  "navigationBarTextStyle": "white"
+}

@@ -1,0 +1,64 @@
+<view class="vertical">
+  <image class="background" src="../../images/profile/background.png"></image>
+  <view class="avatar-item vertical">
+    <open-data class="avatar" type="userAvatarUrl"></open-data>
+    <open-data type="userNickName"></open-data>
+  </view>
+  <view class="profile-item horizontal">
+    <image class="logo" src="../../images/profile/information.png"></image>
+    <text>我的资料</text>
+    <image class="arrow" src="../../images/profile/arrow.png"></image>
+  </view>
+  <view class="profile-item horizontal">
+    <image class="logo" src="../../images/profile/information.png"></image>
+    <text>我的发布</text>
+    <image class="arrow" src="../../images/profile/arrow.png"></image>
+  </view>
+  <view class="profile-item horizontal">
+    <image class="logo" src="../../images/profile/information.png"></image>
+    <text>我的维修</text>
+    <image class="arrow" src="../../images/profile/arrow.png"></image>
+  </view>
+  <view class="profile-item horizontal">
+    <image class="logo" src="../../images/profile/information.png"></image>
+    <text>文件管理</text>
+    <image class="arrow" src="../../images/profile/arrow.png"></image>
+  </view>
+  <view class="profile-item service vertical">
+    <view class="tip horizontal">
+      <image src="../../images/profile/other.png"></image>
+      <text>其他服务</text>
+    </view>
+    <view class="horizontal">
+      <view class="tip-item vertical" bindtap="toBill">
+        <image src="../../images/profile/record.png"></image>
+        <text>账单管理</text>
+      </view>
+      <view class="tip-item vertical">
+        <image src="../../images/profile/suggest.png"></image>
+        <text>投诉与建议</text>
+      </view>
+      <view class="tip-item vertical">
+        <image src="../../images/profile/help.png"></image>
+        <text>帮助中心</text>
+      </view>
+    </view>
+  </view>
+  <view class="cu-bar tabbar foot bg-white">
+    <view class="action {{indexSelected ? 'text-green' : 'text-gray'}}" bindtap="toIndex">
+      <view class="{{indexSelected ? 'icon-homefill' : 'icon-home'}}"></view>首页
+    </view>
+    <view class="action {{shareSelected ? 'text-green' : 'text-gray'}}" bindtap="toShare">
+      <view class="{{shareSelected ? 'icon-newshotfill' : 'icon-newshot'}}"></view>分享
+    </view>
+    <view class="action text-gray add-action" bindtap="toPublish">
+      <button class="cu-btn icon-add bg-green shadow"></button>发布
+    </view>
+    <view class="action {{messageSelected ? 'text-green' : 'text-gray'}}"  bindtap="toMessage">
+      <view class="{{messageSelected ? 'icon-markfill' : 'icon-mark'}}"></view>消息
+    </view>
+    <view class="action {{profileSelected ? 'text-green' : 'text-gray'}}" bindtap="toProfile">
+      <view class="{{profileSelected ? 'icon-myfill' : 'icon-my'}}"></view>我的
+    </view>
+  </view>
+</view>

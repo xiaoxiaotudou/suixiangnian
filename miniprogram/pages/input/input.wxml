@@ -1,0 +1,50 @@
+<!--miniprogram/pages/input/input.wxml-->
+<view class="input">
+  <view class="date-wrapper">
+    <view class="date-label">日期：</view>
+    <picker class="date-value" mode="date" value="{{date}}" bindchange="dateChange">
+      <view>{{date}}</view>
+    </picker>
+  </view>
+  <view class="type-wrapper">
+    <view class="type-label">类型：</view>
+    <picker class="type-value" range-key="showContent" value="{{inputTypeIndex}}" range="{{inputTypes}}" bindchange="inputTypeChange" >
+      <view>{{inputTypes[inputTypeIndex].showContent}}</view>
+    </picker>
+    <view class="type-add" bindtap="showModal">添加新类型</view>
+  </view>
+  <view class="money-wrapper">
+    <view class="money-label">金额：</view>
+    <view class="money-value"><input placeholder="请输入进账金额" bindinput="inputMoneyChange"/></view>
+  </view>
+  <view class="close-input-type-wrapper">
+    <view class="close-input-type-label">账期：</view>
+    <picker class="close-input-type-value" range-key="name" value="{{closeInputTypeIndex}}" range="{{closeInputTypes}}" bindchange="closeInputTypeChange">
+      <view>{{closeInputTypes[closeInputTypeIndex].name}}</view>
+    </picker>
+  </view>
+  <view class="close-input-wrapper">
+    <view class="close-input-label">结账：</view>
+    <radio-group class="close-input-value" bindchange="closeInputChange">
+      <label class="radio" wx:for="{{closeInputs}}">
+        <radio value="{{item.value}}" checked="{{item.checked}}" />
+        {{item.name}}
+      </label>
+    </radio-group>
+  </view>
+  <button class="submit-wrapper" bindtap="submit">确认提交</button> 
+</view>
+<view class="modal" wx:if="{{showModal}}">
+  <view class="modal-content">
+    <view class="modal-label">添加新进账类型</view>
+    <view class="modal-data">
+      <view class="modal-data-type">
+        <label>类型：</label><input placeholder="请输入新类型" bindinput="addInputType"></input>
+      </view>
+    </view>
+    <view class="modal-btn">
+      <view class="btn" bindtap="hideModal">取消</view>
+      <view class="btn" bindtap="saveInputType">保存</view>
+    </view>
+  </view>
+</view>

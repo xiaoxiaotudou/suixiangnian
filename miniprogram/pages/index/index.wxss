@@ -1,0 +1,24 @@
+@import "../../style/colorui/colorui.wxss";
+@import "../../style/colorui/icon.wxss";
+@import "../../style/common.wxss";
+
+.location {
+  height: 60rpx;
+}
+
+.location-image {
+  font-size: 36rpx;
+  margin-right: 8rpx;
+  margin-left: 30rpx;
+}
+
+.location text {
+  font-size: 28rpx;
+  font-weight: 500;
+  line-height: 40rpx;
+}
+
+.screen-swiper image {
+  width: 700rpx;
+  border-radius: 20rpx;
+}

@@ -1,0 +1,30 @@
+<view class="index-wrapper">
+  <view class="horizontal location">
+    <view class="location-image icon-location text-green"></view>
+    <text class="text-green">湖北省黄冈市白果镇</text>
+  </view>
+  <view>
+    <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+      <swiper-item wx:for="{{4}}" wx:key class="vertical">
+        <image src="https://image.weilanwl.com/img/4x3-{{index+1}}.jpg" mode='aspectFill'></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="cu-bar tabbar foot bg-white">
+    <view class="action {{indexSelected ? 'text-green' : 'text-gray'}}" bindtap="toIndex">
+      <view class="{{indexSelected ? 'icon-homefill' : 'icon-home'}}"></view>首页
+    </view>
+    <view class="action {{shareSelected ? 'text-green' : 'text-gray'}}" bindtap="toShare">
+      <view class="{{shareSelected ? 'icon-newshotfill' : 'icon-newshot'}}"></view>分享
+    </view>
+    <view class="action text-gray add-action" bindtap="toPublish">
+      <button class="cu-btn icon-add bg-green shadow"></button>发布
+    </view>
+    <view class="action {{messageSelected ? 'text-green' : 'text-gray'}}" bindtap="toMessage">
+      <view class="{{messageSelected ? 'icon-markfill' : 'icon-mark'}}"></view>消息
+    </view>
+    <view class="action {{profileSelected ? 'text-green' : 'text-gray'}}" bindtap="toProfile">
+      <view class="{{profileSelected ? 'icon-myfill' : 'icon-my'}}"></view>我的
+    </view>
+  </view>
+</view>
