@@ -1,50 +1,31 @@
-<!--miniprogram/pages/output/output.wxml-->
-<view class="output">
-  <view class="date-wrapper">
-    <view class="date-label">日期：</view>
-    <picker class="date-value" mode="date" value="{{date}}" bindchange="dateChange">
-      <view>{{date}}</view>
+<view class="expenditure vertical">
+  <view class="expenditure-item horizontal">
+    <view class="label">日期：</view>
+    <picker mode="date" value="{{selectedDate}}" bindchange="dateChange">
+      <view class="value select">{{selectedDate}}</view>
     </picker>
   </view>
-  <view class="type-wrapper">
-    <view class="type-label">类型：</view>
-    <picker class="type-value" range-key="showContent" value="{{outputTypeIndex}}" range="{{outputTypes}}" bindchange="outputTypeChange" >
-      <view>{{outputTypes[outputTypeIndex].showContent}}</view>
-    </picker>
-    <view class="type-add" bindtap="showModal">添加新类型</view>
-  </view>
-  <view class="money-wrapper">
-    <view class="money-label">金额：</view>
-    <view class="money-value"><input placeholder="请输入出帐金额" bindinput="outputMoneyChange"/></view>
-  </view>
-  <view class="close-output-type-wrapper">
-    <view class="close-output-type-label">账期：</view>
-    <picker class="close-output-type-value" range-key="name" value="{{closeOutputTypeIndex}}" range="{{closeOutputTypes}}" bindchange="closeOutputTypeChange">
-      <view>{{closeOutputTypes[closeOutputTypeIndex].name}}</view>
+  <view class="expenditure-item horizontal">
+    <view class="label">类型：</view>
+    <picker range-key="content" value="{{expenditureTypeIndex}}" range="{{expenditureTypes}}" bindchange="expenditureTypeChange" >
+      <view class="value select">{{expenditureTypes[expenditureTypeIndex].content}}</view>
     </picker>
   </view>
-  <view class="close-output-wrapper">
-    <view class="close-output-label">结账：</view>
-    <radio-group class="close-output-value" bindchange="closeOutputChange">
-      <label class="radio" wx:for="{{closeOutputs}}" wx:key>
-        <radio value="{{item.value}}" checked="{{item.checked}}" />
-        {{item.name}}
-      </label>
-    </radio-group>
+  <view class="expenditure-item horizontal">
+    <view class="label">支出：</view>
+    <input class="value" type="digit" placeholder="请输入支出金额" bindinput="saveexpenditure"></input>
+  </view>
+  <view class="expenditure-item horizontal">
+    <view class="label">结账类型：</view>
+    <picker range-key="type" value="{{billTypeIndex}}" range="{{billTypes}}" bindchange="billTypeChange">
+      <view class="value select">{{billTypes[billTypeIndex].type}}</view>
+    </picker>
+  </view>
+  <view class="expenditure-item horizontal">
+    <view class="label">是否结账：</view>
+    <picker range-key="closeType" value="{{billCloseTypeIndex}}" range="{{billCloseTypes}}" bindchange="closeInputTypeChange">
+      <view class="value select">{{billCloseTypes[billCloseTypeIndex].closeType}}</view>
+    </picker>
   </view>
   <button class="submit-wrapper" bindtap="submit">确认提交</button> 
-</view>
-<view class="modal" wx:if="{{showModal}}">
-  <view class="modal-content">
-    <view class="modal-label">添加新出账类型</view>
-    <view class="modal-data">
-      <view class="modal-data-type">
-        <label>类型：</label><input placeholder="请输入新类型" bindinput="addOutputType"></input>
-      </view>
-    </view>
-    <view class="modal-btn">
-      <view class="btn" bindtap="hideModal">取消</view>
-      <view class="btn" bindtap="saveOutputType">保存</view>
-    </view>
-  </view>
 </view>
