@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "i-input": "../../iview/input/index"
+    "i-cell": "../../iview/cell/index",
+    "i-switch": "../../iview/switch/index"
   }
 }

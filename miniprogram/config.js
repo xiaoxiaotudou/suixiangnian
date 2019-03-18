@@ -11,7 +11,7 @@ const config = {
     "search": "/pages/search/search",
     "bill": "/pages/bill/bill"
   },
-  env: isProd ? 'prod-29121c' : 'staging-ef4dd'
+  env: isProd ? 'prod-29121c' : 'staging-ef4dd',
 }
 
 module.exports = config

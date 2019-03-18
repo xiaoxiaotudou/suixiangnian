@@ -7,28 +7,28 @@
   </view>
   <view class="revenue-item horizontal">
     <view class="label">类型：</view>
-    <picker range-key="showContent" value="{{inputTypeIndex}}" range="{{inputTypes}}" bindchange="inputTypeChange" >
-      <view class="value select">{{inputTypes[inputTypeIndex].showContent}}</view>
+    <picker range-key="content" value="{{revenueTypeIndex}}" range="{{revenueTypes}}" bindchange="revenueTypeChange" >
+      <view class="value select">{{revenueTypes[revenueTypeIndex].content}}</view>
     </picker>
   </view>
   <view class="revenue-item horizontal">
     <view class="label">收入：</view>
-    <input class="value" placeholder="请输入收入"></input>
+    <input class="value" type="digit" placeholder="请输入收入" bindinput="saveRevenue"></input>
   </view>
   <view class="revenue-item horizontal">
     <view class="label">成本：</view>
-    <input class="value" placeholder="请输入成本"></input>
+    <input class="value" type="digit" placeholder="请输入成本" bindinput="saveBase"></input>
   </view>
   <view class="revenue-item horizontal">
-    <view class="label">账期：</view>
-    <picker range-key="name" value="{{closeInputTypeIndex}}" range="{{closeInputTypes}}" bindchange="closeInputTypeChange">
-      <view class="value select">{{closeInputTypes[closeInputTypeIndex].name}}</view>
+    <view class="label">结账类型：</view>
+    <picker range-key="type" value="{{billTypeIndex}}" range="{{billTypes}}" bindchange="billTypeChange">
+      <view class="value select">{{billTypes[billTypeIndex].type}}</view>
     </picker>
   </view>
   <view class="revenue-item horizontal">
     <view class="label">是否结账：</view>
-    <picker range-key="name" value="{{closeInputTypeIndex}}" range="{{closeInputTypes}}" bindchange="closeInputTypeChange">
-      <view class="value select">{{closeInputTypes[closeInputTypeIndex].name}}</view>
+    <picker range-key="closeType" value="{{billCloseTypeIndex}}" range="{{billCloseTypes}}" bindchange="closeInputTypeChange">
+      <view class="value select">{{billCloseTypes[billCloseTypeIndex].closeType}}</view>
     </picker>
   </view>
   <button class="submit-wrapper" bindtap="submit">确认提交</button> 
