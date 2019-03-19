@@ -9,20 +9,23 @@ Page({
     date: "2018-12-25"
   },
   onLoad: function (options) {
-
   },
   onShow: function () {
-
   },
   tabSelect: function (e) {
     const index = e.currentTarget.dataset.id
     const selectedIndex = this.data.selectedIndex
-    if (index != selectedIndex) {
+    if (index != selectedIndex && selectedIndex != 2) {
       this.setData({
         showDialog: true,
         tempIndex: index
       })
       return
+    } else if (index != selectedIndex && selectedIndex == 2) {
+      this.setData({
+        tempIndex: index
+      })
+      this.confirmDialog()
     }
   },
   confirmDialog: function () {

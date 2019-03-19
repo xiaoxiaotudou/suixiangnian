@@ -1,4 +1,5 @@
 const util = require('../../../utils/util.js')
+const config = require('../../../config.js')
 const database = wx.cloud.database()
 
 Component({
@@ -41,6 +42,16 @@ Component({
         billTypeIndex: event.detail.value
       })
     },
+    billCloseTypeChange: function(event) {
+      this.setData({
+        billCloseTypeIndex: event.detail.value
+      })
+    },
+    saveDescription: function(event) {
+      this.setData({
+        description: event.detail.value
+      })
+    },
     submit: util.throttle(function(that) {
       if (that.data.totalAmount == undefined) {
         wx.showToast({
@@ -64,6 +75,7 @@ Component({
           actual: that.data.actualAmount,
           billTypeId: that.data.billTypes[that.data.billTypeIndex]._id,
           billCloseTypeId: that.data.billCloseTypes[that.data.billCloseTypeIndex]._id,
+          description: that.data.description,
           createdAt: database.serverDate()
         }
       }).then(res => {
@@ -94,11 +106,11 @@ Component({
       })
     },
     initRevenueType: function() {
-      database.collection('revenueType').get().then(res => (
+      database.collection('revenueType').get().then(res => {
         this.setData({
           revenueTypes: res.data
         })
-      ))
+      })
     },
     initBillType: function() {
       database.collection('billType').get().then(res => {

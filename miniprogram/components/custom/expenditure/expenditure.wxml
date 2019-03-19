@@ -13,7 +13,7 @@
   </view>
   <view class="expenditure-item horizontal">
     <view class="label">支出：</view>
-    <input class="value" type="digit" placeholder="请输入支出金额" bindinput="saveexpenditure"></input>
+    <input class="value" type="digit" placeholder="请输入支出金额" bindinput="saveExpenditure"></input>
   </view>
   <view class="expenditure-item horizontal">
     <view class="label">结账类型：</view>
@@ -23,9 +23,13 @@
   </view>
   <view class="expenditure-item horizontal">
     <view class="label">是否结账：</view>
-    <picker range-key="closeType" value="{{billCloseTypeIndex}}" range="{{billCloseTypes}}" bindchange="closeInputTypeChange">
+    <picker range-key="closeType" value="{{billCloseTypeIndex}}" range="{{billCloseTypes}}" bindchange="billCloseTypeChange">
       <view class="value select">{{billCloseTypes[billCloseTypeIndex].closeType}}</view>
     </picker>
+  </view>
+  <view class="expenditure-item horizontal">
+    <view class="label">备注：</view>
+    <textarea class="value description" placeholder="选填(最多100个字)" maxlength="100" cursor-spacing="100rpx" bindinput="saveDescription"></textarea>
   </view>
   <button class="submit-wrapper" bindtap="submit">确认提交</button> 
 </view>
