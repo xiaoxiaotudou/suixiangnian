@@ -1,4 +1,4 @@
-<view class="expenditure vertical">
+<view class="expenditure vertical" bindcustomevent="customEvent">
   <view class="expenditure-item horizontal">
     <view class="label">日期：</view>
     <picker mode="date" value="{{selectedDate}}" bindchange="dateChange">

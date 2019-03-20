@@ -79,11 +79,13 @@ Component({
           createdAt: database.serverDate()
         }
       }).then(res => {
+        that.triggerEvent('customevent', {}, {})
         wx.showToast({
           title: '保存成功~',
           icon: 'none'
         })
       }).catch(err => {
+        console.log(err)
         wx.showToast({
           title: '系统开小差了~',
           icon: 'none'

@@ -1,4 +1,4 @@
-<view class="revenue vertical">
+<view class="revenue vertical" bindcustomevent="customEvent">
   <view class="revenue-item horizontal">
     <view class="label">日期：</view>
     <picker mode="date" value="{{selectedDate}}" bindchange="dateChange">

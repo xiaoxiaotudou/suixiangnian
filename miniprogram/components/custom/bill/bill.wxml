@@ -1,2 +1,11 @@
-<!--components/custom/bill/bill.wxml-->
-<text>components/custom/bill/bill.wxml</text>
+<view class="bill-wrapper vertical">
+  <view class="total">
+    <view>收入:</view>
+    <view>支出:</view>
+  </view>
+  <view class="bill-item">
+    <view>空调维修</view>
+    <view>记账时间：2019-3-20</view>
+    <view>收入</view>
+  </view>
+</view>

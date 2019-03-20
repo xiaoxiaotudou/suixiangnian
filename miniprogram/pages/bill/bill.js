@@ -1,11 +1,14 @@
 Page({
   data: {
-    revenueSelected: true,
+    // revenueSelected: true,
+    // expenditureSelected: false,
+    // billSelected: false,
+    revenueSelected: false,
     expenditureSelected: false,
-    billSelected: false,
+    billSelected: true,
     bills: ['收入', '支出', '查询'],
     showDialog: false,
-    selectedIndex: 0,
+    selectedIndex: 2,
     date: "2018-12-25"
   },
   onLoad: function (options) {
@@ -60,4 +63,11 @@ Page({
       showDialog: false
     })
   },
+  customEvent: function() {
+    console.log(11111111)
+    this.setData({
+      tempIndex: 2
+    })
+    this.confirmDialog()
+  }
 })
