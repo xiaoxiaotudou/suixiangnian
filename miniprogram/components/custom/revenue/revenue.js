@@ -4,7 +4,20 @@ const database = wx.cloud.database()
 
 Component({
   properties: {
-
+    showDialog: {
+      type: Boolean,
+      observer: function(newValue) {
+        if (newValue) {
+          this.setData({
+            disabled: true
+          })
+        } else {
+          this.setData({
+            disabled: false
+          })
+        }
+      }
+    }
   },
   data: {
     revenueTypeIndex: 0,
@@ -67,16 +80,21 @@ Component({
         })
         return
       }
-      database.collection('revenue').add({
+      database.collection('bill').add({
         data: {
-          revenueDate: that.data.selectedDate,
+          billDate: that.data.selectedDate,
+          type: 'revenue',
           revenueTypeId: that.data.revenueTypes[that.data.revenueTypeIndex]._id,
+          revenueType: that.data.revenueTypes[that.data.revenueTypeIndex].content,
           total: that.data.totalAmount,
           actual: that.data.actualAmount,
           billTypeId: that.data.billTypes[that.data.billTypeIndex]._id,
+          billType: that.data.billTypes[that.data.billTypeIndex].content,
           billCloseTypeId: that.data.billCloseTypes[that.data.billCloseTypeIndex]._id,
+          billCloseType: that.data.billCloseTypes[that.data.billCloseTypeIndex].content,
           description: that.data.description,
-          createdAt: database.serverDate()
+          createdAt: database.serverDate(),
+          isDeleted: false
         }
       }).then(res => {
         that.triggerEvent('customevent', {}, {})

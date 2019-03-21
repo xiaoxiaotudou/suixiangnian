@@ -6,8 +6,8 @@
       </view>
     </view>
   </scroll-view>
-  <custom-revenue wx:if="{{revenueSelected}}" bindcustomevent="customEvent"></custom-revenue>
-  <custom-expenditure wx:if="{{expenditureSelected}}" bindcustomevent="customEvent"></custom-expenditure>
+  <custom-revenue show-dialog="{{showDialog}}" wx:if="{{revenueSelected}}" bindcustomevent="customEvent"></custom-revenue>
+  <custom-expenditure show-dialog="{{showDialog}}" wx:if="{{expenditureSelected}}" bindcustomevent="customEvent"></custom-expenditure>
   <custom-bill wx:if="{{billSelected}}"></custom-bill>
 </view>
 <i-modal visible="{{ showDialog }}" bind:ok="confirmDialog" bind:cancel="cancelDialog">

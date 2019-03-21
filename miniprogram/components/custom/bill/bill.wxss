@@ -1,3 +1,10 @@
+.horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+}
+
 .vertical {
   display: flex;
   flex-direction: column;
@@ -10,8 +17,47 @@
   background: rgb(255, 2555, 255);
 }
 
+.bill {
+  width: 100%;
+  overflow: hidden;
+}
+
 .bill-item {
-  width: 690rpx;
-  border-radius: 20rpx;
+  border-bottom: 1rpx solid rgba(229,229,229,1);
   background: rgb(255, 2555, 255);
+}
+
+.bill-item image {
+  width: 64rpx;
+  height: 64rpx;
+  margin-left: 30rpx;
+}
+
+.content {
+  margin-left: 30rpx;
+  margin-top: 18rpx;
+  margin-bottom: 18rpx;
+  flex-grow: 2;
+}
+
+.type {
+  font-size: 30rpx;
+}
+
+.info {
+  font-size: 26rpx;
+  margin-top: 12rpx;
+  color:rgba(153, 153, 153, 1);
+}
+
+.amount-wrapper {
+  margin-right: 30rpx;
+}
+
+.amount {
+  font-size: 36rpx;
+}
+
+.revenue {
+  color: rgba(84,219,0,1);
 }
