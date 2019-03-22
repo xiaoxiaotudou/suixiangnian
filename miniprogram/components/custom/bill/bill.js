@@ -15,9 +15,14 @@ Component({
   },
   methods: {
     init: function() {
-      database.collection('bill').orderBy('createdAt', 'desc').get().then(res => {
+      database.collection('bill').count().then(res => {
         this.setData({
-          bills: res.data
+          total: res.total
+        })
+        database.collection('bill').orderBy('createdAt', 'desc').get().then(res => {
+          this.setData({
+            bills: res.data
+          })
         })
       })
     }

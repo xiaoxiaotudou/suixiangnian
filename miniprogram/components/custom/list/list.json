@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "custom-list": "../list/list"
+    "i-icon": "../../iview/icon/index"
   }
 }

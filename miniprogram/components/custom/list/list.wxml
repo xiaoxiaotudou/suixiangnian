@@ -1,0 +1,18 @@
+<view class="list-wrapper center">
+  <view class="background">
+    <view class="header center">
+      <view>请选择事由</view>
+      <i-icon class="addbtn" type="add" size="24" color="#80848f" />
+    </view>
+    <scroll-view scroll-y="true" class="items">
+      <view wx:for="{{20}}" wx:for-index="index">
+        <view class="item horizontal" data-index="{{index}}">
+          <image src="../../../images/list/unselected.png"></image>
+          <view class="content">我要测试</view>
+          <i-icon class="editor" type="editor" size="22" color="#80848f" />
+          <i-icon class="delete" type="delete" size="22" color="#80848f" />
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

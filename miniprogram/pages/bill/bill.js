@@ -1,14 +1,14 @@
 Page({
   data: {
-    // revenueSelected: true,
-    // expenditureSelected: false,
-    // billSelected: false,
-    revenueSelected: false,
+    revenueSelected: true,
     expenditureSelected: false,
-    billSelected: true,
+    billSelected: false,
+    // revenueSelected: false,
+    // expenditureSelected: false,
+    // billSelected: true,
     bills: ['收入', '支出', '查询'],
     showDialog: false,
-    selectedIndex: 2,
+    selectedIndex: 0,
     date: "2018-12-25"
   },
   onLoad: function (options) {
