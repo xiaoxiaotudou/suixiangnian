@@ -5,14 +5,17 @@
       <i-icon class="addbtn" type="add" size="24" color="#80848f" />
     </view>
     <scroll-view scroll-y="true" class="items">
-      <view wx:for="{{20}}" wx:for-index="index">
-        <view class="item horizontal" data-index="{{index}}">
+      <view wx:for="{{items}}" wx:for-index="index" wx:key="item">
+        <view class="item horizontal {{index == 0 ? 'first' : ''}}" data-index="{{index}}">
           <image src="../../../images/list/unselected.png"></image>
-          <view class="content">我要测试</view>
-          <i-icon class="editor" type="editor" size="22" color="#80848f" />
-          <i-icon class="delete" type="delete" size="22" color="#80848f" />
+          <view class="content">{{item.content}}</view>
+          <i-icon class="editor" type="editor" size="22" color="#80848f" bindtap="edit" date-item="{{item}}"/>
+          <i-icon class="delete" type="delete" size="22" color="#80848f" bindtap="delete" data-index="{{index}}" data-id="{{item._id}}" />
         </view>
       </view>
     </scroll-view>
   </view>
 </view>
+<i-modal visible="{{deletedDialog}}" bind:ok="confirmDialog" bind:cancel="cancelDialog">
+  <view>数据删除后无法恢复，是否继续？</view>
+</i-modal>

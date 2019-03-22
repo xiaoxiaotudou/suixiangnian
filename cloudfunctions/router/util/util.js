@@ -1,21 +1,25 @@
 module.exports = {
   main: async (event, context, cloud, database) => {
     const method = event.method
-    const collection = event.collection
+    const collectionName = event.collectionName
     const params = event.params
-    const private = event.private
-    if (private) {
-      params.userId = cloud.getWXContext().OPENID
-    }
 
     if (method === 'save') {
-      return database.collection(collection).add({data: params})
+      return database.collection(collectionName).add({data: params})
     } else if (method === 'update') {
-      return database.collection(collection).update({ data: params })
+      return database.collection(collectionName).update({ data: params })
     } else if (method === 'search') {
-      return database.collection(collection).get()
+      return database.collection(collectionName).get()
     } else if (method === 'delete') {
-      return database.collection(collection).remove()
+      return database.collection(collectionName).where({
+        _id: params._id,
+        _openid: cloud.getWXContext().OPENID
+      }).update({
+        data: {
+          isDeleted: true,
+          updatedAt: database.serverDate()
+        }
+      })
     }
   }
 }

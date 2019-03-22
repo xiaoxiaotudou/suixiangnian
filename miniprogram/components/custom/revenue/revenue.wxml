@@ -37,4 +37,4 @@
   </view>
   <button class="submit-wrapper" bindtap="submit">确认提交</button> 
 </view>
-<custom-list></custom-list>
+<custom-list items="{{revenueTypes}}"></custom-list>
