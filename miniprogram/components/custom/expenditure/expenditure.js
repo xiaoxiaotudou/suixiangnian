@@ -84,7 +84,7 @@ Component({
           isDeleted: false
         }
       }).then(res => {
-        that.triggerEvent('customevent', {}, {})
+        that.triggerEvent('savesuccess', {})
         wx.showToast({
           title: '保存成功~',
           icon: 'none'

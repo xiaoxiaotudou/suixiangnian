@@ -63,11 +63,15 @@ Page({
       showDialog: false
     })
   },
-  customEvent: function() {
-    console.log(11111111)
-    this.setData({
+  saveSuccess: function() {
+     this.setData({
       tempIndex: 2
     })
     this.confirmDialog()
+  },
+  showPicker: function(event) {
+    this.setData({
+      showPicker: event.detail.showPicker
+    })
   }
 })

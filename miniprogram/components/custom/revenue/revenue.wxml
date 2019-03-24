@@ -1,4 +1,4 @@
-<view class="revenue vertical" bindcustomevent="customEvent">
+<view class="revenue vertical">
   <view class="revenue-item horizontal">
     <view class="label">日期：</view>
     <picker mode="date" value="{{selectedDate}}" bindchange="dateChange">
@@ -7,7 +7,7 @@
   </view>
   <view class="revenue-item horizontal">
     <view class="label">事由：</view>
-    <view bindtap="selectRevenueType" class="value select">{{revenueTypes[revenueTypeIndex].content}}</view>
+    <view bindtap="selectRevenueType" class="value select">{{selectedRevenueType.content}}</view>
   </view>
   <view class="revenue-item horizontal">
     <view class="label">收入：</view>
@@ -19,16 +19,16 @@
   </view>
   <view class="revenue-item horizontal">
     <view class="label">结账类型：</view>
-    <view class="value select">{{billTypes[billTypeIndex].content}}</view>
+    <view bindtap="selectBillType" class="value select">{{selectedBillType.content}}</view>
   </view>
   <view class="revenue-item horizontal">
     <view class="label">是否结账：</view>
-    <view class="value select">{{billCloseTypes[billCloseTypeIndex].content}}</view>
+    <view bindtap="selectBillCloseType" class="value select">{{selectedBillCloseType.content}}</view>
   </view>
   <view class="revenue-item horizontal">
     <view class="label">备注：</view>
-    <textarea placeholder-class="placeholder" class="value description" placeholder="选填(最多100个字)" maxlength="100" cursor-spacing="100rpx" bindinput="saveDescription" disabled="{{disabled}}"></textarea>
+    <textarea placeholder-class="placeholder" class="value description" placeholder="选填(最多100个字)" maxlength="100" cursor-spacing="100rpx" bindinput="saveDescription" disabled="{{descriptionDisabled}}"></textarea>
   </view>
   <button class="submit-wrapper" bindtap="submit">确认提交</button> 
 </view>
-<custom-list wx:if="{{showList}}" show-add="{{showAdd}}" show-edit="{{showEdit}}" show-delete="{{showDelete}}" bindselecteditem="selectedItem"></custom-list>
+<custom-list wx:if="{{showList}}" collection-name="{{collectionName}}" show-add="{{showAdd}}" show-edit="{{showEdit}}" show-delete="{{showDelete}}" bindselecteditem="selectedItem"></custom-list>

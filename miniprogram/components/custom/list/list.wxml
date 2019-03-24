@@ -1,21 +1,34 @@
 <view class="list-wrapper center">
   <view class="background">
     <view class="header center">
-      <view>请选择事由</view>
-      <i-icon wx:if="{{showAdd}}" class="addbtn" type="add" size="24" color="#80848f" />
+      <view>{{tip}}</view>
+      <i-icon wx:if="{{showAdd}}" bindtap="add" class="addbtn" type="add" size="24" color="#80848f" />
     </view>
     <scroll-view scroll-y="true" class="items">
       <view wx:for="{{items}}" wx:for-index="index" wx:key="item">
         <view class="item horizontal {{index == 0 ? 'first' : ''}}" data-index="{{index}}">
           <image src="../../../images/list/unselected.png" bindtap="select" data-item="{{item}}"></image>
           <view class="content">{{item.content}}</view>
-          <i-icon wx:if="{{showEdit}}" class="editor" type="editor" size="22" color="#80848f" bindtap="edit" date-item="{{item}}"/>
+          <i-icon wx:if="{{showEdit}}" class="editor" type="editor" size="22" color="#80848f" bindtap="edit" data-item="{{item}}"/>
           <i-icon wx:if="{{showDelete}}" class="delete" type="delete" size="22" color="#80848f" bindtap="delete" data-index="{{index}}" data-id="{{item._id}}" />
         </view>
       </view>
     </scroll-view>
   </view>
 </view>
-<i-modal visible="{{deletedDialog}}" bind:ok="confirmDialog" bind:cancel="cancelDialog">
+<i-modal visible="{{deletedDialog}}" bind:ok="confirmDeleteDialog" bind:cancel="cancelDeleteDialog">
   <view>数据删除后无法恢复，是否继续？</view>
 </i-modal>
+<view class="list-wrapper center" wx:if="{{showAddDialog}}">
+  <view class="background">
+    <view class="header center">{{addDialogTip}}</view>
+    <view class="content-wrapper horizontal">
+      <view>事由：</view>
+      <input placeholder-class="placeholder" placeholder="请输入新的事由" value="{{editContent}}" bindinput="inputNewData"></input>
+    </view>
+    <view class="btn-wrapper horizontal">
+      <view class="cancel center" bindtap="cancelAddDialog">取消</view>
+      <view class="save center" bindtap="confirmAddDialog">保存</view>
+    </view>
+  </view>
+</view>

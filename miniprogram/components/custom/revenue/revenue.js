@@ -9,11 +9,11 @@ Component({
       observer: function(newValue) {
         if (newValue) {
           this.setData({
-            disabled: true
+            descriptionDisabled: true
           })
         } else {
           this.setData({
-            disabled: false
+            descriptionDisabled: false
           })
         }
       }
@@ -36,11 +36,14 @@ Component({
       })
     },
     selectRevenueType: function(event) {
+      this.triggerEvent('showpicker', {showPicker: true})
       this.setData({
+        collectionName: 'revenueType',
         showList: true,
         showAdd: true,
         showEdit: true,
         showDelete: true,
+        descriptionDisabled: true
       })
     },
     saveRevenue: function(event) {
@@ -53,14 +56,26 @@ Component({
         actualAmount: event.detail.value
       })
     },
-    billTypeChange: function(event) {
+    selectBillType: function(event) {
+      this.triggerEvent('showpicker', {showPicker: true})
       this.setData({
-        billTypeIndex: event.detail.value
+        collectionName: 'billType',
+        showList: true,
+        showAdd: false,
+        showEdit: false,
+        showDelete: false,
+        descriptionDisabled: true
       })
     },
-    billCloseTypeChange: function(event) {
+    selectBillCloseType: function(event) {
+      this.triggerEvent('showpicker', {showPicker: true})
       this.setData({
-        billCloseTypeIndex: event.detail.value
+        collectionName: 'billCloseType',
+        showList: true,
+        showAdd: false,
+        showEdit: false,
+        showDelete: false,
+        descriptionDisabled: true
       })
     },
     saveDescription: function(event) {
@@ -87,20 +102,20 @@ Component({
         data: {
           billDate: that.data.selectedDate,
           type: 'revenue',
-          revenueTypeId: that.data.revenueTypes[that.data.revenueTypeIndex]._id,
-          revenueType: that.data.revenueTypes[that.data.revenueTypeIndex].content,
+          revenueTypeId: that.data.selectedRevenueType._id,
+          revenueType: that.data.selectedRevenueType.content,
           total: that.data.totalAmount,
           actual: that.data.actualAmount,
-          billTypeId: that.data.billTypes[that.data.billTypeIndex]._id,
-          billType: that.data.billTypes[that.data.billTypeIndex].content,
-          billCloseTypeId: that.data.billCloseTypes[that.data.billCloseTypeIndex]._id,
-          billCloseType: that.data.billCloseTypes[that.data.billCloseTypeIndex].content,
+          billTypeId: that.data.selectedBillType._id,
+          billType: that.data.selectedBillType.content,
+          billCloseTypeId: that.data.selectedBillCloseType._id,
+          billCloseType: that.data.selectedBillCloseType.content,
           description: that.data.description,
           createdAt: database.serverDate(),
           isDeleted: false
         }
       }).then(res => {
-        that.triggerEvent('customevent', {}, {})
+        that.triggerEvent('savesuccess', {})
         wx.showToast({
           title: '保存成功~',
           icon: 'none'
@@ -131,27 +146,45 @@ Component({
     initRevenueType: function() {
       database.collection('revenueType').get().then(res => {
         this.setData({
-          revenueTypes: res.data
+          selectedRevenueType: res.data[0]
         })
       })
     },
     initBillType: function() {
       database.collection('billType').get().then(res => {
         this.setData({
-          billTypes: res.data
+          selectedBillType: res.data[0]
         })
       })
     },
     initBillCloseType: function() {
       database.collection('billCloseType').get().then(res => (
         this.setData({
-          billCloseTypes: res.data
+          selectedBillCloseType: res.data[0]
         })
       ))
     },
     selectedItem: function(event) {
+      this.triggerEvent('showpicker', {showPicker: false})
+      this.setData({
+        showList: false
+      })
       const detail = event.detail
-      console.log(detail)
+      const collectionName = detail.collectionName
+      const selectedItem = detail.selectedItem
+      if (collectionName == 'revenueType') {
+        this.setData({
+          selectedRevenueType: selectedItem
+        })
+      } else if (collectionName == 'billType') {
+        this.setData({
+          selectedBillType: selectedItem
+        })
+      } else if (collectionName == 'billCloseType') {
+        this.setData({
+          selectedBillCloseType: selectedItem
+        })
+      }
     }
   }
 })
