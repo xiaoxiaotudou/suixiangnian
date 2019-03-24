@@ -1,11 +1,50 @@
 Component({
   properties: {
-    items: {
-      type: Array,
-      value: [],
-      observer: function(newItems) {
+    item: {
+      type: String,
+      value: '',
+      observer: function(newValue) {
+        wx.cloud.callFunction({
+          name: 'router',
+          data: {
+            $url: 'util',
+            method: 'delete',
+            collectionName: 'revenueType',
+            params: {
+              _id: this.data.deletedItemId
+            }
+          }
+        }).then(res => {
+          const result = res.result
+        }).catch(err => {
+
+        })
+      }
+    },
+    showAdd: {
+      type: Boolean,
+      value: false,
+      observer: function(newValue) {
         this.setData({
-          items: newItems
+          showAdd: newValue
+        })
+      }
+    },
+    showEdit: {
+      type: Boolean,
+      value: false,
+      observer: function(newValue) {
+        this.setData({
+          showEdit: newValue
+        })
+      }
+    },
+    showDelete: {
+      type: Boolean,
+      value: false,
+      observer: function(newValue) {
+        this.setData({
+          showDelete: newValue
         })
       }
     }
@@ -14,6 +53,9 @@ Component({
 
   },
   methods: {
+    select: function(event) {
+      this.triggerEvent('selecteditem', {selectedItem: event.target.dataset.item})
+    },
     edit: function(event) {
 
     },

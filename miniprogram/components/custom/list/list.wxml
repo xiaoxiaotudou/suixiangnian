@@ -2,15 +2,15 @@
   <view class="background">
     <view class="header center">
       <view>请选择事由</view>
-      <i-icon class="addbtn" type="add" size="24" color="#80848f" />
+      <i-icon wx:if="{{showAdd}}" class="addbtn" type="add" size="24" color="#80848f" />
     </view>
     <scroll-view scroll-y="true" class="items">
       <view wx:for="{{items}}" wx:for-index="index" wx:key="item">
         <view class="item horizontal {{index == 0 ? 'first' : ''}}" data-index="{{index}}">
-          <image src="../../../images/list/unselected.png"></image>
+          <image src="../../../images/list/unselected.png" bindtap="select" data-item="{{item}}"></image>
           <view class="content">{{item.content}}</view>
-          <i-icon class="editor" type="editor" size="22" color="#80848f" bindtap="edit" date-item="{{item}}"/>
-          <i-icon class="delete" type="delete" size="22" color="#80848f" bindtap="delete" data-index="{{index}}" data-id="{{item._id}}" />
+          <i-icon wx:if="{{showEdit}}" class="editor" type="editor" size="22" color="#80848f" bindtap="edit" date-item="{{item}}"/>
+          <i-icon wx:if="{{showDelete}}" class="delete" type="delete" size="22" color="#80848f" bindtap="delete" data-index="{{index}}" data-id="{{item._id}}" />
         </view>
       </view>
     </scroll-view>

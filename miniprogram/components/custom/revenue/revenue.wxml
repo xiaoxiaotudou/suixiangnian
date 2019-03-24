@@ -6,10 +6,8 @@
     </picker>
   </view>
   <view class="revenue-item horizontal">
-    <view class="label">类型：</view>
-    <picker range-key="content" value="{{revenueTypeIndex}}" range="{{revenueTypes}}" bindchange="revenueTypeChange" >
-      <view class="value select">{{revenueTypes[revenueTypeIndex].content}}</view>
-    </picker>
+    <view class="label">事由：</view>
+    <view bindtap="selectRevenueType" class="value select">{{revenueTypes[revenueTypeIndex].content}}</view>
   </view>
   <view class="revenue-item horizontal">
     <view class="label">收入：</view>
@@ -21,15 +19,11 @@
   </view>
   <view class="revenue-item horizontal">
     <view class="label">结账类型：</view>
-    <picker range-key="content" value="{{billTypeIndex}}" range="{{billTypes}}" bindchange="billTypeChange">
-      <view class="value select">{{billTypes[billTypeIndex].content}}</view>
-    </picker>
+    <view class="value select">{{billTypes[billTypeIndex].content}}</view>
   </view>
   <view class="revenue-item horizontal">
     <view class="label">是否结账：</view>
-    <picker range-key="content" value="{{billCloseTypeIndex}}" range="{{billCloseTypes}}" bindchange="billCloseTypeChange">
-      <view class="value select">{{billCloseTypes[billCloseTypeIndex].content}}</view>
-    </picker>
+    <view class="value select">{{billCloseTypes[billCloseTypeIndex].content}}</view>
   </view>
   <view class="revenue-item horizontal">
     <view class="label">备注：</view>
@@ -37,4 +31,4 @@
   </view>
   <button class="submit-wrapper" bindtap="submit">确认提交</button> 
 </view>
-<custom-list items="{{revenueTypes}}"></custom-list>
+<custom-list wx:if="{{showList}}" show-add="{{showAdd}}" show-edit="{{showEdit}}" show-delete="{{showDelete}}" bindselecteditem="selectedItem"></custom-list>

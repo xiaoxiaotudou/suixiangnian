@@ -35,9 +35,12 @@ Component({
         selectedDate: event.detail.value
       })
     },
-    revenueTypeChange: function(event) {
+    selectRevenueType: function(event) {
       this.setData({
-        revenueTypeIndex: event.detail.value
+        showList: true,
+        showAdd: true,
+        showEdit: true,
+        showDelete: true,
       })
     },
     saveRevenue: function(event) {
@@ -145,6 +148,10 @@ Component({
           billCloseTypes: res.data
         })
       ))
+    },
+    selectedItem: function(event) {
+      const detail = event.detail
+      console.log(detail)
     }
   }
 })
