@@ -12,52 +12,64 @@
   align-content: center;
 }
 
-.total {
-  width: 100%;
-  background: rgb(255, 2555, 255);
+.label {
+  width: 190rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  text-align: right;
 }
 
-.bill {
-  width: 100%;
-  overflow: hidden;
+.value {
+  font-size: 32rpx;
+  line-height: 32rpx;
+  width: 470rpx;
+  text-align: right;
 }
 
-.bill-item {
-  border-bottom: 1rpx solid rgba(229,229,229,1);
-  background: rgb(255, 2555, 255);
+.select::after {
+  font-family: iconfont;
+  content: "\e6a3";
+  font-size: 32rpx;
+  line-height: 32rpx;
 }
 
-.bill-item image {
-  width: 64rpx;
-  height: 64rpx;
-  margin-left: 30rpx;
+.description {
+  text-align: left;
+  height: 240rpx;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+  border-radius: 20rpx;
+  padding: 10rpx;
+  background: rgba(245, 245, 245, 1);
 }
 
-.content {
-  margin-left: 30rpx;
-  margin-top: 18rpx;
-  margin-bottom: 18rpx;
-  flex-grow: 2;
-}
-
-.type {
-  font-size: 30rpx;
-}
-
-.info {
-  font-size: 26rpx;
-  margin-top: 12rpx;
-  color:rgba(153, 153, 153, 1);
-}
-
-.amount-wrapper {
-  margin-right: 30rpx;
-}
-
-.amount {
-  font-size: 36rpx;
+.placeholder {
+  color: rgba(0, 0, 0, 0.55);
 }
 
 .revenue {
-  color: rgba(84,219,0,1);
+  background:rgba(245, 245, 245, 1);
+  min-height: 100vh;
+}
+
+.revenue-item {
+  background:rgba(255, 255, 255, 1);
+  border-radius: 12rpx;
+  width: 690rpx;
+  min-height: 120rpx;
+  margin-top: 40rpx;
+  overflow: hidden;
+}
+
+.submit-wrapper {
+  width: 690rpx;
+  height: 88rpx;
+  background-color: #FFB040;
+  color: #FFFFFF;
+  border-radius: 40rpx;
+  margin: auto;
+  font-size: 32rpx;
+  box-shadow: 0px 14rpx 14rpx 0rpx rgba(255, 176, 64, 0.25);
+  margin-top: 70rpx;
+  margin-bottom: 50rpx;
 }

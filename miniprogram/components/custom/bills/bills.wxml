@@ -1,0 +1,18 @@
+<view class="bill-wrapper vertical">
+  <!-- <view class="total">
+    <view>收入:</view>
+    <view>支出:</view>
+  </view> -->
+  <view class="bill" wx:for="{{bills}}" wx:key="item">
+    <view class="bill-item horizontal">
+      <image src="{{item.type == 'revenue' ? '../../../images/bill/revenue.png' : '../../../images/bill/expenditure.png'}}"></image>
+      <view class="content">
+        <view class="type">{{item.billReason}}</view>
+        <view class="info">{{item.billDate}} | {{item.billType}} | {{item.billCloseType}}</view>
+      </view>
+      <view class="amount-wrapper horizontal">
+        <view class="amount {{item.type == 'revenue' ? 'revenue' : ''}}">{{item.type == 'revenue' ? '+' + item.total : '-' + item.actual}}</view>元
+      </view>
+    </view>
+  </view>
+</view>

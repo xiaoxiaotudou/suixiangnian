@@ -23,33 +23,43 @@ exports.main = async (event, context) => {
     }
   )
 
-  router.router('revenueType-findAll',
+  router.router('billReason-findAll',
     async (ctx, next) => {
       await next();
     }, async (ctx, next) => {
       await next();
     }, async (ctx) => {
-      const util = require('revenueType/findAll.js')
+      const util = require('billReason/findAll.js')
       ctx.body = util.main(event, context, cloud, database)
     }
   )
-  router.router('revenueType-save',
+  router.router('billReason-save',
     async (ctx, next) => {
       await next();
     }, async (ctx, next) => {
       await next();
     }, async (ctx) => {
-      const util = require('revenueType/save.js')
+      const util = require('billReason/save.js')
       ctx.body = util.main(event, context, cloud, database)
     }
   )
-  router.router('revenueType-delete',
+  router.router('billReason-delete',
     async (ctx, next) => {
       await next();
     }, async (ctx, next) => {
       await next();
     }, async (ctx) => {
-      const util = require('revenueType/delete.js')
+      const util = require('billReason/delete.js')
+      ctx.body = util.main(event, context, cloud, database)
+    }
+  )
+  router.router('billReason-edit',
+    async (ctx, next) => {
+      await next();
+    }, async (ctx, next) => {
+      await next();
+    }, async (ctx) => {
+      const util = require('billReason/edit.js')
       ctx.body = util.main(event, context, cloud, database)
     }
   )

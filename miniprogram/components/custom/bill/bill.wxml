@@ -1,18 +1,34 @@
-<view class="bill-wrapper vertical">
-  <!-- <view class="total">
-    <view>收入:</view>
-    <view>支出:</view>
-  </view> -->
-  <view class="bill" wx:for="{{bills}}" wx:key="item">
-    <view class="bill-item horizontal">
-      <image src="{{item.type == 'revenue' ? '../../../images/bill/revenue.png' : '../../../images/bill/expenditure.png'}}"></image>
-      <view class="content">
-        <view class="type">{{item.type == 'revenue' ? item.revenueType : item.expenditureType}}</view>
-        <view class="info">{{item.billDate}} | {{item.billType}} | {{item.billCloseType}}</view>
-      </view>
-      <view class="amount-wrapper horizontal">
-        <view class="amount {{item.type == 'revenue' ? 'revenue' : ''}}">{{item.type == 'revenue' ? '+' : '-'}}{{item.total}}</view>元
-      </view>
-    </view>
+<view class="revenue vertical">
+  <view class="revenue-item horizontal">
+    <view class="label">日期：</view>
+    <picker mode="date" value="{{selectedDate}}" bindchange="dateChange">
+      <view class="value select">{{selectedDate}}</view>
+    </picker>
   </view>
+  <view class="revenue-item horizontal">
+    <view class="label">事由：</view>
+    <view bindtap="selectBillReason" class="value select">{{selectedBillReason.content}}</view>
+  </view>
+  <view class="revenue-item horizontal" wx:if="{{type == 'revenue'}}">
+    <view class="label">收入：</view>
+    <input placeholder-class="placeholder" class="value" type="digit" placeholder="请输入收入" bindinput="saveTotal"></input>
+  </view>
+  <view class="revenue-item horizontal">
+    <view class="label">{{type == 'revenue' ? '成本：' : '支出：'}}</view>
+    <input placeholder-class="placeholder" class="value" type="digit" placeholder="请输入成本" bindinput="saveBase"></input>
+  </view>
+  <view class="revenue-item horizontal">
+    <view class="label">结账类型：</view>
+    <view bindtap="selectBillType" class="value select">{{selectedBillType.content}}</view>
+  </view>
+  <view class="revenue-item horizontal">
+    <view class="label">是否结账：</view>
+    <view bindtap="selectBillCloseType" class="value select">{{selectedBillCloseType.content}}</view>
+  </view>
+  <view class="revenue-item horizontal">
+    <view class="label">备注：</view>
+    <textarea placeholder-class="placeholder" class="value description" placeholder="选填(最多100个字)" maxlength="100" cursor-spacing="100rpx" bindinput="saveDescription" disabled="{{descriptionDisabled}}"></textarea>
+  </view>
+  <button class="submit-wrapper" bindtap="submit">确认提交</button> 
 </view>
+<custom-list wx:if="{{showList}}" collection-name="{{collectionName}}" show-add="{{showAdd}}" show-edit="{{showEdit}}" show-delete="{{showDelete}}" bindselecteditem="selectedItem"></custom-list>

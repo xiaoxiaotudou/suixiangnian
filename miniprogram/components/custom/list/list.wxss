@@ -37,6 +37,16 @@
   font-size: 34rpx;
 }
 
+.loading-wrapper {
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+}
+
+.loading-wrapper image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
 .addbtn {
   position: absolute;
   right: 30rpx;

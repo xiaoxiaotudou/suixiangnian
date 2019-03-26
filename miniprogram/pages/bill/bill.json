@@ -1,8 +1,7 @@
 {
   "usingComponents": {
-    "custom-revenue": "../../components/custom/revenue/revenue",
-    "custom-expenditure": "../../components/custom/expenditure/expenditure",
     "custom-bill": "../../components/custom/bill/bill",
+    "custom-bills": "../../components/custom/bills/bills",
     "i-modal": "../../components/iview//modal/index"
   },
   "backgroundTextStyle": "light",

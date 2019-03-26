@@ -4,13 +4,17 @@
       <view>{{tip}}</view>
       <i-icon wx:if="{{showAdd}}" bindtap="add" class="addbtn" type="add" size="24" color="#80848f" />
     </view>
+    <view class="loading-wrapper center" wx:if="{{showLoading}}">
+      <image src="../../../images/common/loading.gif" wx:if="{{showLoading && !emptyItems}}"></image>
+      <view wx:if="{{emptyItems}}">暂无数据</view>
+    </view>
     <scroll-view scroll-y="true" class="items">
       <view wx:for="{{items}}" wx:for-index="index" wx:key="item">
         <view class="item horizontal {{index == 0 ? 'first' : ''}}" data-index="{{index}}">
           <image src="../../../images/list/unselected.png" bindtap="select" data-item="{{item}}"></image>
           <view class="content">{{item.content}}</view>
           <i-icon wx:if="{{showEdit}}" class="editor" type="editor" size="22" color="#80848f" bindtap="edit" data-item="{{item}}"/>
-          <i-icon wx:if="{{showDelete}}" class="delete" type="delete" size="22" color="#80848f" bindtap="delete" data-index="{{index}}" data-id="{{item._id}}" />
+          <i-icon wx:if="{{showDelete}}" class="delete" type="delete" size="22" color="#80848f" bindtap="delete" data-id="{{item._id}}" />
         </view>
       </view>
     </scroll-view>
