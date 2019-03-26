@@ -2,9 +2,6 @@
   "pages": [
     "pages/bill/bill",
     "pages/index/index",
-    "pages/input/input",
-    "pages/output/output",
-    "pages/search/search",
     "pages/profile/profile",
     "pages/message/message",
     "pages/share/share",
