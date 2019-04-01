@@ -95,10 +95,6 @@
   margin-left: 30rpx;
 }
 
-.content input {
-  
-}
-
 .save, .cancel {
   font-size: 36rpx;
   width: 50%;

@@ -3,6 +3,7 @@
   flex-direction: row;
   align-items: center;
   align-content: center;
+  justify-content: center;
 }
 
 .vertical {
@@ -12,22 +13,40 @@
   align-content: center;
 }
 
-.total {
-  width: 100%;
-  background: rgb(255, 2555, 255);
-}
-
-.bill {
+.bills-wrapper {
   width: 100%;
   overflow: hidden;
 }
 
-.bill-item {
+.total-wrapper {
   border-bottom: 1rpx solid rgba(229,229,229,1);
+  background: rgb(255, 2555, 255);
+  font-size: 32rpx;
+}
+
+.total {
+  margin-left: 30rpx;
+}
+
+.common {
+  width: 40%;
+}
+
+.bill {
+  white-space: nowrap;
+  border-bottom: 1rpx solid rgba(229, 229, 229, 1);
+}
+
+.move {
+  transform: translateX(-200rpx);
+}
+
+.bill-data {
+  width: 750rpx;
   background: rgb(255, 2555, 255);
 }
 
-.bill-item image {
+.bill-data image {
   width: 64rpx;
   height: 64rpx;
   margin-left: 30rpx;
@@ -59,5 +78,27 @@
 }
 
 .revenue {
-  color: rgba(84,219,0,1);
+  color: rgba(84, 219, 0, 1);
+}
+
+.bill-btn {
+  width: 200rpx;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  transform: translateX(100%);
+}
+
+.edit, .delete {
+  width: 100rpx;
+  height: 100%;
+  color: #FFFFFF;
+}
+
+.edit {
+  background: #8799A3;
+}
+
+.delete {
+  background: #E54D42;
 }

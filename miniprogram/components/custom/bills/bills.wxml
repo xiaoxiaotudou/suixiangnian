@@ -1,10 +1,11 @@
-<view class="bill-wrapper vertical">
-  <!-- <view class="total">
-    <view>收入:</view>
-    <view>支出:</view>
-  </view> -->
-  <view class="bill" wx:for="{{bills}}" wx:key="item">
-    <view class="bill-item horizontal">
+<view class="bills-wrapper">
+  <view class="total-wrapper">
+    <view><view class="total">总收入: {{revenueTotal}}</view><view class="horizontal"><view class="common">已结：{{revenueTotalY}}</view><view class="common">未结：{{revenueTotalN}}</view></view></view>
+    <view><view class="total">净收入: {{revenueActual}}</view><view class="horizontal"><view class="common">已结：{{revenueActualY}}</view><view class="common">未结：{{revenueActualN}}</view></view></view>
+    <view><view class="total">总支出: {{expenditureActual}}</view><view class="horizontal"><view class="common">已结：{{expenditureActualY}}</view><view class="common">未结：{{expenditureActualN}}</view></view></view>
+  </view>
+  <view class="bill horizontal {{moveLeftIndex == item._id ? 'move': ''}}" wx:for="{{bills}}" wx:key="item">
+    <view class="bill-data horizontal" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"  data-id="{{item._id}}">
       <image src="{{item.type == 'revenue' ? '../../../images/bill/revenue.png' : '../../../images/bill/expenditure.png'}}"></image>
       <view class="content">
         <view class="type">{{item.billReason}}</view>
@@ -14,5 +15,12 @@
         <view class="amount {{item.type == 'revenue' ? 'revenue' : ''}}">{{item.type == 'revenue' ? '+' + item.total : '-' + item.actual}}</view>元
       </view>
     </view>
+    <view class="bill-btn horizontal">
+      <view class="edit horizontal" bindtap="edit">编辑</view>
+      <view class="delete horizontal" bindtap="delete" data-id="{{item._id}}">删除</view>
+    </view>
   </view>
 </view>
+<i-modal visible="{{showDeleteDialog}}" bind:ok="confirmDelete" bind:cancel="cancelDelete">
+  <view>数据删除后无法恢复，是否继续？</view>
+</i-modal>

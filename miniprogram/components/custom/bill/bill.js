@@ -111,6 +111,7 @@ Component({
           billCloseType: that.data.selectedBillCloseType.content,
           description: that.data.description,
           createdAt: database.serverDate(),
+          updatedAt: database.serverDate(),
           isDeleted: false
         }
       }).then(res => {

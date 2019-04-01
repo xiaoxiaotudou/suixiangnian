@@ -2,7 +2,7 @@ Page({
   data: {
     bills: ['收入', '支出', '查询'],
     showDialog: false,
-    selectedIndex: 0,
+    selectedIndex: 2,
     date: "2018-12-25"
   },
   tabSelect: function (e) {

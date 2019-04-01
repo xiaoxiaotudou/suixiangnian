@@ -83,5 +83,35 @@ exports.main = async (event, context) => {
       ctx.body = util.main(event, context, cloud, database)
     }
   )
+  router.router('bill-findAll',
+    async (ctx, next) => {
+      await next();
+    }, async (ctx, next) => {
+      await next();
+    }, async (ctx) => {
+      const util = require('bill/findAll.js')
+      ctx.body = util.main(event, context, cloud, database)
+    }
+  )
+  router.router('bill-findById',
+    async (ctx, next) => {
+      await next();
+    }, async (ctx, next) => {
+      await next();
+    }, async (ctx) => {
+      const util = require('bill/findById.js')
+      ctx.body = util.main(event, context, cloud, database)
+    }
+  )
+  router.router('bill-delete',
+    async (ctx, next) => {
+      await next();
+    }, async (ctx, next) => {
+      await next();
+    }, async (ctx) => {
+      const util = require('bill/delete.js')
+      ctx.body = util.main(event, context, cloud, database)
+    }
+  )
   return router.serve()
 }
