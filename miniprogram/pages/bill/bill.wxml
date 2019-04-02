@@ -7,7 +7,7 @@
     </view>
   </scroll-view>
   <custom-bill show-dialog="{{showDialog}}" type="{{selectedIndex == 0 ? 'revenue' : 'expenditure'}}" wx:if="{{selectedIndex == 0 || selectedIndex == 1}}" bindsavesuccess="saveSuccess" bindshowpicker="showPicker"></custom-bill>
-  <custom-bills wx:if="{{selectedIndex == 2}}"></custom-bills>
+  <custom-bills wx:if="{{selectedIndex == 2}}" bindshowpicker="showPicker"></custom-bills>
 </view>
 <i-modal visible="{{ showDialog }}" bind:ok="confirmDialog" bind:cancel="cancelDialog">
   <view>当前页面数据未保存，是否继续？</view>

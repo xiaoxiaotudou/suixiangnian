@@ -108,6 +108,7 @@ Component({
       })
     },
     edit: function(event) {
+      this.triggerEvent('showpicker', { showPicker: true })
       wx.cloud.callFunction({
         name: 'router',
         data: {
@@ -139,7 +140,7 @@ Component({
             },
             showEditDialog: true,
             editId: event.currentTarget.dataset.id,
-            description: data.description
+            description: data.description ? data.description : null
           })
         }
       }).catch(err => {
@@ -176,6 +177,7 @@ Component({
       })
     },
     cancelEdit: function(event) {
+      this.triggerEvent('showpicker', { showPicker: false })
       this.setData({
         showEditDialog: false,
         editId: null,

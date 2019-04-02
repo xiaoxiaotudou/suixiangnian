@@ -42,6 +42,7 @@
 .bill {
   white-space: nowrap;
   border-bottom: 1rpx solid rgba(229, 229, 229, 1);
+  position: relative;
 }
 
 .move {
