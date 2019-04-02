@@ -1,26 +1,47 @@
 <view class="bills-wrapper">
   <view class="total-wrapper">
-    <view><view class="total">总收入: {{revenueTotal}}</view><view class="horizontal"><view class="common">已结：{{revenueTotalY}}</view><view class="common">未结：{{revenueTotalN}}</view></view></view>
-    <view><view class="total">净收入: {{revenueActual}}</view><view class="horizontal"><view class="common">已结：{{revenueActualY}}</view><view class="common">未结：{{revenueActualN}}</view></view></view>
-    <view><view class="total">总支出: {{expenditureActual}}</view><view class="horizontal"><view class="common">已结：{{expenditureActualY}}</view><view class="common">未结：{{expenditureActualN}}</view></view></view>
+    <view><view class="total">总收入: {{revenueTotal}}</view><view class="center"><view class="common">已结：{{revenueTotalY}}</view><view class="common">未结：{{revenueTotalN}}</view></view></view>
+    <view><view class="total">净收入: {{revenueActual}}</view><view class="center"><view class="common">已结：{{revenueActualY}}</view><view class="common">未结：{{revenueActualN}}</view></view></view>
+    <view><view class="total">总支出: {{expenditureActual}}</view><view class="center"><view class="common">已结：{{expenditureActualY}}</view><view class="common">未结：{{expenditureActualN}}</view></view></view>
   </view>
   <view class="bill horizontal {{moveLeftIndex == item._id ? 'move': ''}}" wx:for="{{bills}}" wx:key="item">
     <view class="bill-data horizontal" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"  data-id="{{item._id}}">
       <image src="{{item.type == 'revenue' ? '../../../images/bill/revenue.png' : '../../../images/bill/expenditure.png'}}"></image>
       <view class="content">
         <view class="type">{{item.billReason}}</view>
-        <view class="info">{{item.billDate}} | {{item.billType}} | {{item.billCloseType}}</view>
+        <view class="info">{{item.billDate}} | {{item.billType}} | {{item.billCloseType}}{{item.billCloseType == '已结' && item.billPayMethod != null  ? ' | ' + item.billPayMethod : ''}}</view>
       </view>
       <view class="amount-wrapper horizontal">
         <view class="amount {{item.type == 'revenue' ? 'revenue' : ''}}">{{item.type == 'revenue' ? '+' + item.total : '-' + item.actual}}</view>元
       </view>
     </view>
     <view class="bill-btn horizontal">
-      <view class="edit horizontal" bindtap="edit">编辑</view>
-      <view class="delete horizontal" bindtap="delete" data-id="{{item._id}}">删除</view>
+      <view class="edit center" bindtap="edit" data-id="{{item._id}}">编辑</view>
+      <view class="delete center" bindtap="delete" data-id="{{item._id}}">删除</view>
     </view>
   </view>
 </view>
 <i-modal visible="{{showDeleteDialog}}" bind:ok="confirmDelete" bind:cancel="cancelDelete">
   <view>数据删除后无法恢复，是否继续？</view>
 </i-modal>
+<view class="edit-wrapper center" wx:if="{{showEditDialog}}">
+  <view class="background">
+    <view class="edit-item horizontal">
+      <view class="label">是否结账：</view>
+      <view  bindtap="selectBillCloseType" class="value select">{{selectedBillCloseType.content}}</view>
+    </view>
+    <view class="edit-item horizontal" wx:if="{{showBillPayMethod}}">
+      <view class="label">结账方式：</view>
+      <view bindtap="selectBillPayMethod" class="value select">{{selectedBillPayMethod.content}}</view>
+    </view>
+    <view class="edit-item horizontal">
+      <view class="label">备注：</view>
+      <textarea wx:if="{{!showList}}" class="value description" placeholder="选填(最多100个字)" maxlength="100" cursor-spacing="100rpx" value="{{description}}" bindinput="saveDescription" disabled="{{descriptionDisabled}}"></textarea>
+    </view>
+    <view class="horizontal">
+      <view class="edit-btn center" bindtap="cancelEdit">取消</view>
+      <view class="edit-btn update center" bindtap="confirmEdit">保存</view>
+    </view>
+  </view>
+</view>
+<custom-list wx:if="{{showList}}" collection-name="{{collectionName}}" show-add="{{showAdd}}" show-edit="{{showEdit}}" show-delete="{{showDelete}}" bindselecteditem="selectedItem"></custom-list>

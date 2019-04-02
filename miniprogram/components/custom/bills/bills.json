@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "i-modal": "../../iview/modal/index"
+    "i-modal": "../../iview/modal/index",
+    "custom-list": "../list/list"
   }
 }

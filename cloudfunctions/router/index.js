@@ -113,5 +113,35 @@ exports.main = async (event, context) => {
       ctx.body = util.main(event, context, cloud, database)
     }
   )
+  router.router('bill-edit',
+    async (ctx, next) => {
+      await next();
+    }, async (ctx, next) => {
+      await next();
+    }, async (ctx) => {
+      const util = require('bill/edit.js')
+      ctx.body = util.main(event, context, cloud, database)
+    }
+  )
+  router.router('bill-save',
+    async (ctx, next) => {
+      await next();
+    }, async (ctx, next) => {
+      await next();
+    }, async (ctx) => {
+      const util = require('bill/save.js')
+      ctx.body = util.main(event, context, cloud, database)
+    }
+  )
+  router.router('billPayMethod-findAll',
+    async (ctx, next) => {
+      await next();
+    }, async (ctx, next) => {
+      await next();
+    }, async (ctx) => {
+      const util = require('billPayMethod/findAll.js')
+      ctx.body = util.main(event, context, cloud, database)
+    }
+  )
   return router.serve()
 }

@@ -2,8 +2,7 @@ Page({
   data: {
     bills: ['收入', '支出', '查询'],
     showDialog: false,
-    selectedIndex: 2,
-    date: "2018-12-25"
+    selectedIndex: 0,
   },
   tabSelect: function (e) {
     const index = e.currentTarget.dataset.id

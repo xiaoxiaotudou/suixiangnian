@@ -35,7 +35,6 @@ Component({
         let expenditureActualY = 0
         let expenditureActualN = 0
         this.data.bills.forEach(bill => {
-          console.log(bill)
           if (bill.type == 'expenditure') {
             if (bill.billCloseType == '已结') {
               expenditureActualY += Number(bill.actual)
@@ -69,20 +68,120 @@ Component({
       }).catch(err => {
       })
     },
-    edit: function(event) {
-      const id = event.currentTarget.dataset.id
+    initBillPayMethod: function() {
       wx.cloud.callFunction({
         name: 'router',
         data: {
-          $url: 'bill-findById',
-          _id: id
+          $url: 'billPayMethod-findAll',
         }
       }).then(res => {
         const result = res.result
         this.setData({
-          bill: result.data
+          selectedBillPayMethod: result.data[0]
         })
       }).catch(err => {
+      })
+    },
+    selectBillCloseType: function() {
+      this.setData({
+        collectionName: 'billCloseType',
+        showList: true,
+        showAdd: false,
+        showEdit: false,
+        showDelete: false,
+        descriptionDisabled: true
+      })
+    },
+    selectBillPayMethod: function () {
+      this.setData({
+        collectionName: 'billPayMethod',
+        showList: true,
+        showAdd: false,
+        showEdit: false,
+        showDelete: false,
+        descriptionDisabled: true
+      })
+    },
+    saveDescription: function (event) {
+      this.setData({
+        description: event.detail.value
+      })
+    },
+    edit: function(event) {
+      wx.cloud.callFunction({
+        name: 'router',
+        data: {
+          $url: 'bill-findById',
+          _id: event.currentTarget.dataset.id
+        }
+      }).then(res => {
+        const result = res.result
+        if (result.data.length == 1) {
+          const data = result.data[0]
+          if (data.billCloseType == '已结') {
+            this.setData({
+              showBillPayMethod: true,
+              selectedBillPayMethod: {
+                _id: data.billPayMethodId,
+                content: data.billPayMethod
+              }
+            })
+          } else {
+            this.setData({
+              showBillPayMethod: false,
+              selectedBillPayMethod: null
+            })
+          }
+          this.setData({
+            selectedBillCloseType: {
+              _id: data.billCloseTypeId,
+              content: data.billCloseType
+            },
+            showEditDialog: true,
+            editId: event.currentTarget.dataset.id,
+            description: data.description
+          })
+        }
+      }).catch(err => {
+      })
+    },
+    confirmEdit: function(event) {
+      const id = event.currentTarget.dataset.id
+      wx.cloud.callFunction({
+        name: 'router',
+        data: {
+          $url: 'bill-edit',
+          _id: this.data.editId,
+          billCloseType: this.data.selectedBillCloseType,
+          billPayMethod: this.data.selectedBillPayMethod,
+          description: this.data.description
+        }
+      }).then(res => {
+        const result = res.result
+        this.cancelEdit()
+        console.log(result.stats.updated)
+        if (result.stats.updated == 1) {
+          this.init()
+          wx.showToast({
+            title: '编辑成功~',
+            icon: 'none'
+          })
+        } else {
+          wx.showToast({
+            title: '编辑失败~',
+            icon: 'none'
+          })
+        }
+      }).catch(err => {
+      })
+    },
+    cancelEdit: function(event) {
+      this.setData({
+        showEditDialog: false,
+        editId: null,
+        selectedBillCloseType: null,
+        selectedBillPayMethod: null,
+        description: null
       })
     },
     delete: function (event) {
@@ -101,10 +200,7 @@ Component({
         }
       }).then(res => {
         const result = res.result
-        this.setData({
-          showDeleteDialog: false,
-          deleteId: null
-        })
+        this.cancelDelete()
         if (result.stats.updated == 1) {
           this.init()
           wx.showToast({
@@ -154,5 +250,36 @@ Component({
         touchDirection: null
       })
     },
+    selectedItem: function (event) {
+      this.setData({
+        showList: false,
+        descriptionDisabled: false
+      })
+      const detail = event.detail
+      const collectionName = detail.collectionName
+      const selectedItem = detail.selectedItem
+      if (collectionName == 'billCloseType') {
+        this.setData({
+          selectedBillCloseType: selectedItem
+        })
+        if (selectedItem.content == '已结') {
+          this.setData({
+            showBillPayMethod: true
+          })
+          if (this.data.selectedBillPayMethod == null) {
+            this.initBillPayMethod()
+          }
+        } else {
+          this.setData({
+            showBillPayMethod: false,
+            selectedBillPayMethod: null
+          })
+        }
+      } else if (collectionName == 'billPayMethod') {
+        this.setData({
+          selectedBillPayMethod: selectedItem
+        })
+      }
+    }
   }
 })

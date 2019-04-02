@@ -202,6 +202,9 @@ Component({
       } else if (collectionName == 'billCloseType') {
         url = 'billCloseType-findAll'
         tip = '请选择是否结账'
+      } else if (collectionName == 'billPayMethod') {
+        url = 'billPayMethod-findAll'
+        tip = '请选择结账方式'
       }
       this.setData({
         tip: tip

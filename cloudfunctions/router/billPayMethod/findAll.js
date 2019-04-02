@@ -1,11 +1,11 @@
 module.exports = {
   main: async (event, context, cloud, database) => {
-    const result = await database.collection('billCloseType').count()
+    const result = await database.collection('billPayMethod').count()
     const total = result.total
     const batchTimes = Math.ceil(total / 100)
     const tasks = []
     for (let i = 0; i < batchTimes; i++) {
-      const promise = database.collection('billCloseType').where({
+      const promise = database.collection('billPayMethod').where({
         isDeleted: false
       }).orderBy('updatedAt', 'desc').skip(i * 100).limit(100).get()
       tasks.push(promise)
