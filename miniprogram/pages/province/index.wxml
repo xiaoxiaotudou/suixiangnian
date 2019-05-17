@@ -1,0 +1,9 @@
+<scroll-view scroll-y scroll-into-view="{{prefix}}">
+  <view class="provice-wrapper" wx:for="{{locations}}" wx:key="location" wx:for-item="location">
+    <view id="{{location.prefix}}" class="prefix">{{location.prefix}}</view>
+    <view class="location" wx:for="{{location.datas}}" wx:key="data" bindtap="tapLocation" data-province="{{item.name}}" data-citys="{{item.c}}">{{item.name}}</view>
+  </view>
+</scroll-view>
+<view class="index">
+  <view wx:for="{{locations}}" wx:key="location" wx:for-item="location" bindtap="tapIndex" data-index="{{location.prefix}}">{{location.prefix}}</view>
+</view>

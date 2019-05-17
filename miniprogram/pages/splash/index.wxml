@@ -1,0 +1,10 @@
+<view class="splash-wrapper">
+  <image src="/images/splash/bg.png" />
+  <open-data class="avatar" type="userAvatarUrl" />
+  <view class="description">
+    <view>碎想念申请获得您的以下权限：</view>
+    <view>获得您的公开信息(昵称、头像等)</view>
+    <view>点击授权, 开启碎想念~</view>
+  </view>
+  <button class="authorized-button" open-type="getUserInfo" lang="zh_CN" bind:getuserinfo="onGetUserInfo">授权</button>
+</view>

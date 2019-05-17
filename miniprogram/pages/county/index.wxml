@@ -1,0 +1,3 @@
+<scroll-view scroll-y>
+  <view class="county" wx:for="{{countys}}" wx:key="county" bindtap="tapCounty" data-county="{{item.name}}">{{item.name}}</view>
+</scroll-view>

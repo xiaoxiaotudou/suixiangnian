@@ -1,79 +1,79 @@
-//index.js
-const config = require("../../config.js")
+const config = require('../../config.js')
+const location = require('../../utils/location.js')
+const region = require('../../utils/region.js')
 
 Page({
-  data: {
-    indexSelected: true
-  },
-  handleChange({ detail }) {
-    this.setData({
-      current: detail.key
-    });
-  },
   onLoad: function() {
-    this.checkAuthorization()
+    this.checkAuthorization();
+  },
+  onShow: function() {
+    const activeMember = wx.getStorageSync('activeMember')
+    this.setData({ address: activeMember.address})
   },
   checkAuthorization: function() {
-    wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.userLocation']) {
-          wx.authorize({
-            scope: 'scope.userLocation',
-            success() {
+    if (!wx.getStorageSync('activeMember')) {
+      wx.cloud.callFunction({
+        name: 'router',
+        data: {
+          $url: 'user-findById',
+        }
+      }).then(res => {
+        const result = res.result
+        if (result.data.length == 0) {
+          wx.cloud.callFunction({
+            name: 'router',
+            data: {
+              $url: 'user-save',
             }
+          }).then(res => {
+            const result = res.result
+            wx.setStorageSync('activeMember', result.data[0])
+            this.getLocationName()
+          }).catch(err => {
+            console.log(err)
           })
+        } else {
+          wx.setStorageSync('activeMember', result.data[0])
+          this.getLocationName()
         }
-      }
-    })
+      }).catch(err => {
+        console.log(err)
+      })
+    } else {
+      this.getLocationName()
+    }
   },
-  tapInput: function() {
-    wx.navigateTo({
-      url: config.pages.input,
-    })
-  },
-  tapOutput: function () {
-    wx.navigateTo({
-      url: config.pages.output,
-    })
-  },
-  tapSearch: function () {
-    wx.cloud.callFunction({
-      name: 'router',
-      data: {
-        $url: 'test',
-        method: 'save',
-        collection: 'inputType',
-        params: {
-          'test': '123456999998888888'
+  getLocationName: function() {
+    let activeMember = wx.getStorageSync('activeMember')
+    if (!activeMember.address) {
+      wx.getSetting({
+        success(res) {
+          if (res.authSetting['scope.userLocation'] === undefined) {
+            wx.authorize({
+              scope: "scope.userLocation",
+              success() {
+
+              },
+              fail() {
+                wx.navigateTo({
+                  url: '../province/index',
+                })    
+              }
+            })
+          } else if (!res.authSetting['scope.userLocation']) {
+            wx.navigateTo({
+              url: '../province/index',
+            })
+          } else {
+            
+          }
         }
-      }
-    }).then((res) =>
-      console.log(res.result)
-    )
+      })
+    }
   },
-  toIndex: function() {
-    wx.switchTab({
-      url: config.pages.index,
+  tapSelectAddress: function() {
+    wx.navigateTo({
+      url: '/pages/province/index',
     })
-  },
-  toShare: function () {
-    wx.switchTab({
-      url: config.pages.share,
-    })
-  },
-  toPublish: function () {
-    wx.switchTab({
-      url: config.pages.publish,
-    })
-  },
-  toMessage: function () {
-    wx.switchTab({
-      url: config.pages.message,
-    })
-  },
-  toProfile: function () {
-    wx.switchTab({
-      url: config.pages.profile,
-    })
-  },
+  }
 })

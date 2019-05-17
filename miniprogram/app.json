@@ -1,13 +1,19 @@
 {
   "pages": [
-    "pages/bill/bill",
+    "pages/splash/index",
     "pages/index/index",
+    "pages/bill/bill",
     "pages/profile/profile",
-    "pages/message/message",
+    "pages/message/index",
     "pages/share/share",
-    "pages/publish/publish"
+    "pages/publish/index",
+    "pages/province/index",
+    "pages/city/index",
+    "pages/county/index"
   ],
+  "usingComponents": {},
   "tabBar": {
+    "custom": true,
     "list": [
       {
         "pagePath": "pages/index/index",
@@ -22,13 +28,13 @@
         "selectedIconPath": "images/common/profile_unactive.png"
       },
       {
-        "pagePath": "pages/publish/publish",
+        "pagePath": "pages/publish/index",
         "text": "发布",
         "iconPath": "images/common/profile_unactive.png",
         "selectedIconPath": "images/common/profile_unactive.png"
       },
       {
-        "pagePath": "pages/message/message",
+        "pagePath": "pages/message/index",
         "text": "消息",
         "iconPath": "images/common/profile_unactive.png",
         "selectedIconPath": "images/common/profile_unactive.png"
@@ -45,5 +51,6 @@
     "scope.userLocation": {
       "desc": "位置信息将用于为你精准匹配"
     }
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

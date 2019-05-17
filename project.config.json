@@ -12,7 +12,7 @@
 	},
 	"appid": "wx92adea191ab785d8",
 	"projectname": "suixiangnian",
-	"libVersion": "2.2.5",
+	"libVersion": "2.5.0",
 	"condition": {
 		"search": {
 			"current": -1,

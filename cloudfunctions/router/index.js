@@ -143,5 +143,45 @@ exports.main = async (event, context) => {
       ctx.body = util.main(event, context, cloud, database)
     }
   )
+  router.router('user-findById',
+    async (ctx, next) => {
+      await next();
+    }, async (ctx, next) => {
+      await next();
+    }, async (ctx) => {
+      const util = require('user/findById.js')
+      ctx.body = util.main(event, context, cloud, database)
+    }
+  )
+  router.router('user-save',
+    async (ctx, next) => {
+      await next();
+    }, async (ctx, next) => {
+      await next();
+    }, async (ctx) => {
+      const util = require('user/save.js')
+      ctx.body = util.main(event, context, cloud, database)
+    }
+  )
+  router.router('user-updateAddress',
+    async (ctx, next) => {
+      await next();
+    }, async (ctx, next) => {
+      await next();
+    }, async (ctx) => {
+      const util = require('user/updateAddress.js')
+      ctx.body = util.main(event, context, cloud, database)
+    }
+  )
+  router.router('user-updateUserInfo',
+    async (ctx, next) => {
+      await next();
+    }, async (ctx, next) => {
+      await next();
+    }, async (ctx) => {
+      const util = require('user/updateUserInfo.js')
+      ctx.body = util.main(event, context, cloud, database)
+    }
+  )
   return router.serve()
 }

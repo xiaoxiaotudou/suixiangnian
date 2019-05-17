@@ -7,13 +7,8 @@ Page({
   onShow: function() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
-        selected: 4
+        selected: 3
       })
     }
-  },
-  toBill: function() {
-    wx.navigateTo({
-      url: config.pages.bill,
-    })
   }
 })
