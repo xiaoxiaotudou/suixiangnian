@@ -1,0 +1,4 @@
+isInArray = function(items, item) {
+  return items.indexOf(item) !== -1
+}
+module.exports = { isInArray: isInArray }

@@ -1,2 +1,24 @@
+<wxs src="../../utils/tool.wxs" module="tool" />
 <view>
+  <view class="text-wrapper">
+    <textarea placeholder="这一刻的想法..." maxlength="-1" show-confirm-bar="{{false}}" bindinput="changeText"></textarea>
+  </view>
+  <view class="images-wrapper">
+    <view class="image-wrapper" wx:for="{{tempFilePaths}}" wx:key="tempFilePath">
+      <image src="{{item}}" />
+      <view bindtap="tapDeleteImage" data-index="{{index}}">X</view>
+    </view>
+    <view class="image-add-wrapper" bindtap="tapChooseImage" wx:if="{{tempFilePaths.length < 4}}">
+      <image src="/images/publish/camera.png" />
+    </view>
+  </view>
+  <view class="tags-wrapper">
+    <view class="label-wrapper">请选择标签：</view>
+    <view class="tag-wrapper">
+      <view class="tag {{tool.isInArray(tags, '我要分享') ? 'selected' : ''}}" bindtap="tapSelectTag" data-tag="我要分享">我要分享</view>
+      <view class="tag {{tool.isInArray(tags, '我要维修') ? 'selected' : ''}}" bindtap="tapSelectTag" data-tag="我要维修">我要维修</view>
+      <view class="tag {{tool.isInArray(tags, '我会维修') ? 'selected' : ''}}" bindtap="tapSelectTag" data-tag="我会维修">我会维修</view>
+    </view>
+  </view>
+  <view class="publish-wrapper" bindtap="tapPublish">确认发布</view>
 </view>

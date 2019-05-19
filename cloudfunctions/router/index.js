@@ -183,5 +183,25 @@ exports.main = async (event, context) => {
       ctx.body = util.main(event, context, cloud, database)
     }
   )
+  router.router('publish-save',
+    async (ctx, next) => {
+      await next();
+    }, async (ctx, next) => {
+      await next();
+    }, async (ctx) => {
+      const util = require('publish/save.js')
+      ctx.body = util.main(event, context, cloud, database)
+    }
+  )
+  router.router('publish-updateFileId',
+    async (ctx, next) => {
+      await next();
+    }, async (ctx, next) => {
+      await next();
+    }, async (ctx) => {
+      const util = require('publish/updateFileId.js')
+      ctx.body = util.main(event, context, cloud, database)
+    }
+  )
   return router.serve()
 }

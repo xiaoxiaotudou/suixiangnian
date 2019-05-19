@@ -1,12 +1,12 @@
 {
   "pages": [
+    "pages/publish/index",
     "pages/splash/index",
     "pages/index/index",
     "pages/bill/bill",
     "pages/profile/profile",
     "pages/message/index",
     "pages/share/share",
-    "pages/publish/index",
     "pages/province/index",
     "pages/city/index",
     "pages/county/index"
