@@ -1,6 +1,8 @@
 const config = require("config.js")
+const regeneratorRuntime = require("libs/regenerator.js")
 
 App({
+  regeneratorRuntime,
   onLaunch: function () {
     wx.hideTabBar()
     if (!wx.cloud) {

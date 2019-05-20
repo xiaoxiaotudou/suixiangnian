@@ -55,7 +55,7 @@ Page({
     }
     this.setData({ tags })
   },
-  tapPublish: function() {
+  tapPublish: async function() {
     if (this.data.text.length === 0) {
       wx.showToast({
         title: '请输入此刻的想法',
@@ -76,45 +76,45 @@ Page({
       title: '发布中...',
       mask: true
     })
-    const that = this
-    wx.cloud.callFunction({
+    let id = ''
+    let fileIds = []
+    await wx.cloud.callFunction({
       name: 'router',
       data: {
         $url: 'publish-save',
-        text: that.data.text,
-        tags: that.data.tags
+        text: this.data.text,
+        tags: this.data.tags
       }
     }).then(res => {
       const publish = res.result.data[0]
-      const id = publish._id
-      const tempFilePaths = that.data.tempFilePaths
-      let fileIds = []
-      for (let i = 0; i < tempFilePaths.length; i++) {
-        const activeMember = wx.getStorageSync('activeMember')
-        const index = tempFilePaths[i].lastIndexOf('.')
-        const suffix = tempFilePaths[i].substring(index)
-        wx.cloud.uploadFile({
-          cloudPath: activeMember._openid + '/' + id + '/' + i + suffix,
-          filePath: tempFilePaths[i],
-        }).then(res => {
-          const fileID = res.fileID
-          fileIds.push(fileID)
-          wx.cloud.callFunction({
-            name: 'router',
-            data: {
-              $url: 'publish-updateFileId',
-              _id: id,
-              fileIds: fileIds
-            }
-          }).then(res => {
-            wx.hideLoading()
-          }).catch(err => {
-            console.log(err)
-          })
-        }).catch(err => {
-          console.log(err)
-        })
+      id = publish._id
+    }).catch(err => {
+      console.log(err)
+    })
+    const tempFilePaths = this.data.tempFilePaths
+    for (let i = 0; i < tempFilePaths.length; i++) {
+      const activeMember = wx.getStorageSync('activeMember')
+      const index = tempFilePaths[i].lastIndexOf('.')
+      const suffix = tempFilePaths[i].substring(index)
+      await wx.cloud.uploadFile({
+        cloudPath: activeMember._openid + '/' + id + '/' + i + suffix,
+        filePath: tempFilePaths[i],
+      }).then(res => {
+        const fileID = res.fileID
+        fileIds.push(fileID)
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+    await wx.cloud.callFunction({
+      name: 'router',
+      data: {
+        $url: 'publish-updateFileId',
+        _id: id,
+        fileIds: fileIds
       }
+    }).then(res => {
+      wx.hideLoading()
     }).catch(err => {
       console.log(err)
     })
