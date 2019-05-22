@@ -1,3 +1,5 @@
+import ENVIRONMENT_CONFIG from 'config/envConfig.js'
+
 const config = require("config.js")
 const regeneratorRuntime = require("libs/regenerator.js")
 
@@ -14,6 +16,8 @@ App({
       })
     }
 
-    this.globalData = {}
+    this.globalData = {
+      ENVIRONMENT_CONFIG
+    };
   }
 })

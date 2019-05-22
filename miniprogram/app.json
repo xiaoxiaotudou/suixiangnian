@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/splash/index",
     "pages/share/share",
     "pages/publish/index",
-    "pages/splash/index",
     "pages/index/index",
     "pages/bill/bill",
     "pages/profile/profile",

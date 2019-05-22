@@ -1,5 +1,8 @@
+import IMController from '../../controller/im.js'
+
 Page({
   onLoad: function() {
+    let self = this;
     wx.cloud.callFunction({
       name: 'router',
       data: {
@@ -21,6 +24,7 @@ Page({
         })
       } else {
         wx.setStorageSync('activeMember', result.data[0])
+        self.loginIm(result.data[0]);
       }
       wx.getSetting({
         success(res) {
@@ -35,6 +39,15 @@ Page({
       console.log(err)
     })
   },
+
+  loginIm: function(user) {
+    console.log("Login IM");
+    new IMController({
+      token: user.imPsw,
+      account: user.imAccount
+    })
+  },
+
   onGetUserInfo(e) {
     if (!e.detail.iv) {
       return;
@@ -55,4 +68,5 @@ Page({
       console.log(err)
     })
   },
+
 })

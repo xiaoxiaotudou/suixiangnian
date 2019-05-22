@@ -1,4 +1,5 @@
 const config = require("../../config.js")
+const regeneratorRuntime = require("../../libs/regenerator.js")
 
 Page({
   data: {

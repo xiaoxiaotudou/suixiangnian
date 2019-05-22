@@ -9,6 +9,7 @@ Page({
   onShow: function() {
     const activeMember = wx.getStorageSync('activeMember')
     this.setData({ address: activeMember.address})
+
   },
   checkAuthorization: function() {
     if (!wx.getStorageSync('activeMember')) {
@@ -38,7 +39,7 @@ Page({
         }
       }).catch(err => {
         console.log(err)
-      })
+      });
     } else {
       this.getLocationName()
     }
