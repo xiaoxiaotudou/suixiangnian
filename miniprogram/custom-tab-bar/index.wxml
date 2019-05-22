@@ -3,7 +3,7 @@
     <view class="{{selected === 0 ? 'icon-homefill' : 'icon-home'}}"></view>首页
   </view>
   <view class="action {{selected === 1 ? 'text-green' : 'text-gray'}}" bindtap="toShare">
-    <view class="{{selected === 1 ? 'icon-newshotfill' : 'icon-newshot'}}"></view>分享
+    <view class="{{selected === 1 ? 'icon-newshotfill' : 'icon-newshot'}}"></view>干货
   </view>
   <view class="action text-gray add-action" bindtap="toPublish">
     <button class="cu-btn icon-add bg-green shadow"></button>发布

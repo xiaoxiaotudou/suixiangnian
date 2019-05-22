@@ -3,5 +3,6 @@
   "backgroundTextStyle": "light",
   "navigationBarBackgroundColor": "#019EEF",
   "navigationBarTitleText": "分享",
-  "navigationBarTextStyle": "white"
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true
 }

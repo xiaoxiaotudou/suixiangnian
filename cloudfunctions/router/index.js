@@ -203,5 +203,15 @@ exports.main = async (event, context) => {
       ctx.body = util.main(event, context, cloud, database)
     }
   )
+  router.router('publish-findByPagination',
+    async (ctx, next) => {
+      await next();
+    }, async (ctx, next) => {
+      await next();
+    }, async (ctx) => {
+      const util = require('publish/findByPagination.js')
+      ctx.body = util.main(event, context, cloud, database)
+    }
+  )
   return router.serve()
 }

@@ -1,4 +1,17 @@
 isInArray = function(items, item) {
   return items.indexOf(item) !== -1
 }
-module.exports = { isInArray: isInArray }
+
+formatDate = function(dateStr) {
+  var date = getDate(dateStr)
+  return formatNumber(date.getFullYear()) + '-' + formatNumber(date.getMonth() + 1) + '-' + formatNumber(date.getDate()) + " " + formatNumber(date.getHours()) + ":" + formatNumber(date.getMinutes()) + ":" + formatNumber(date.getSeconds())
+}
+
+function formatNumber(number) {
+  return number.toString().length > 1 ? number : '0' + number;
+}
+
+module.exports = {
+  isInArray: isInArray,
+  formatDate: formatDate
+}

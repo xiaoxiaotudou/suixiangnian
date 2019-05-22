@@ -1,12 +1,12 @@
 {
   "pages": [
+    "pages/share/share",
     "pages/publish/index",
     "pages/splash/index",
     "pages/index/index",
     "pages/bill/bill",
     "pages/profile/profile",
     "pages/message/index",
-    "pages/share/share",
     "pages/province/index",
     "pages/city/index",
     "pages/county/index"
@@ -23,7 +23,7 @@
       },
       {
         "pagePath": "pages/share/share",
-        "text": "分享",
+        "text": "干货",
         "iconPath": "images/common/profile_unactive.png",
         "selectedIconPath": "images/common/profile_unactive.png"
       },

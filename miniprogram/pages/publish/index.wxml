@@ -1,7 +1,7 @@
 <wxs src="../../utils/tool.wxs" module="tool" />
 <view>
   <view class="text-wrapper">
-    <textarea placeholder="这一刻的想法..." maxlength="-1" show-confirm-bar="{{false}}" bindinput="changeText"></textarea>
+    <textarea placeholder="这一刻的想法..." maxlength="-1" show-confirm-bar="{{false}}" bindinput="changeText" value="{{text}}"></textarea>
   </view>
   <view class="images-wrapper">
     <view class="image-wrapper" wx:for="{{tempFilePaths}}" wx:key="tempFilePath">

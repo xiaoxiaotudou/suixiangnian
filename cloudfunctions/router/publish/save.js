@@ -5,6 +5,7 @@ module.exports = {
         _openid: cloud.getWXContext().OPENID,
         text: event.text,
         tags: event.tags,
+        activeMember: event.activeMember,
         isDeleted: false,
         createdAt: database.serverDate(),
         updatedAt: database.serverDate()

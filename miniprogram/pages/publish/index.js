@@ -37,7 +37,7 @@ Page({
   tapChooseImage: function() {
     const that = this
     wx.chooseImage({
-      count: 1,
+      count: 4,
       success(res) {
         const tempFilePaths = res.tempFilePaths
         that.setData({ tempFilePaths: that.data.tempFilePaths.concat(tempFilePaths) });
@@ -78,12 +78,14 @@ Page({
     })
     let id = ''
     let fileIds = []
+    const activeMember = wx.getStorageSync('activeMember')
     await wx.cloud.callFunction({
       name: 'router',
       data: {
         $url: 'publish-save',
         text: this.data.text,
-        tags: this.data.tags
+        tags: this.data.tags,
+        activeMember: activeMember
       }
     }).then(res => {
       const publish = res.result.data[0]
@@ -93,7 +95,6 @@ Page({
     })
     const tempFilePaths = this.data.tempFilePaths
     for (let i = 0; i < tempFilePaths.length; i++) {
-      const activeMember = wx.getStorageSync('activeMember')
       const index = tempFilePaths[i].lastIndexOf('.')
       const suffix = tempFilePaths[i].substring(index)
       await wx.cloud.uploadFile({
@@ -114,7 +115,16 @@ Page({
         fileIds: fileIds
       }
     }).then(res => {
+      this.setData({
+        text: '',
+        tempFilePaths: [],
+        tags: []
+      })
       wx.hideLoading()
+      wx.showToast({
+        title: '发布成功！请耐心等待管理员审核',
+        icon: 'none'
+      })
     }).catch(err => {
       console.log(err)
     })
