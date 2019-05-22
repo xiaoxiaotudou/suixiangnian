@@ -1,0 +1,8 @@
+<view class="label-wrapper">
+  <view>联系人：</view>
+  <view>联系电话：</view>
+</view>
+<view class="value-wrapper">
+  <view>碎想念</view>
+  <view>15629129718</view>
+</view>

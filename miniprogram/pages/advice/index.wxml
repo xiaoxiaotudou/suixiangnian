@@ -1,0 +1,4 @@
+<view>
+  <textarea placeholder="投诉或建议..." maxlength="-1" show-confirm-bar="{{false}}" bindinput="changeText" value="{{text}}"></textarea>
+  <button class="submit-wrapper" bindtap="tapSubmit">确认提交</button> 
+</view>

@@ -1,13 +1,11 @@
-<view class="index-wrapper">
-  <view class="horizontal location" bindtap="tapSelectAddress">
+<scroll-view>
+  <view class="location" bindtap="tapSelectAddress">
     <view class="location-image icon-location text-green"></view>
     <text class="text-green">{{address}}</text>
   </view>
-  <view>
-    <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-      <swiper-item wx:for="{{4}}" wx:key class="vertical">
-        <image src="https://image.weilanwl.com/img/4x3-{{index+1}}.jpg" mode='aspectFill'></image>
-      </swiper-item>
-    </swiper>
-  </view>
-</view>
+  <swiper indicator-dots="true" circular="true">
+    <swiper-item wx:for="{{4}}" wx:key>
+      <image src="https://image.weilanwl.com/img/4x3-{{index+1}}.jpg"></image>
+    </swiper-item>
+  </swiper>
+</scroll-view>

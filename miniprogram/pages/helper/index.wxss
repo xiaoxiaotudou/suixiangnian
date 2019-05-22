@@ -1,0 +1,10 @@
+.label-wrapper, .value-wrapper {
+  width: 50%;
+  display: inline-block;
+  font-size: 40rpx;
+  margin-top: 300rpx;
+}
+
+.label-wrapper {
+  text-align: right;
+}

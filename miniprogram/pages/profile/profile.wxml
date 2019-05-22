@@ -35,30 +35,13 @@
         <text>账单管理</text>
       </view>
       <view class="tip-item vertical">
-        <image src="../../images/profile/suggest.png"></image>
+        <image src="../../images/profile/suggest.png" bindtap="toAdvice"></image>
         <text>投诉与建议</text>
       </view>
       <view class="tip-item vertical">
-        <image src="../../images/profile/help.png"></image>
+        <image src="../../images/profile/help.png" bindtap="toHelper"></image>
         <text>帮助中心</text>
       </view>
-    </view>
-  </view>
-  <view class="cu-bar tabbar foot bg-white">
-    <view class="action {{indexSelected ? 'text-green' : 'text-gray'}}" bindtap="toIndex">
-      <view class="{{indexSelected ? 'icon-homefill' : 'icon-home'}}"></view>首页
-    </view>
-    <view class="action {{shareSelected ? 'text-green' : 'text-gray'}}" bindtap="toShare">
-      <view class="{{shareSelected ? 'icon-newshotfill' : 'icon-newshot'}}"></view>分享
-    </view>
-    <view class="action text-gray add-action" bindtap="toPublish">
-      <button class="cu-btn icon-add bg-green shadow"></button>发布
-    </view>
-    <view class="action {{messageSelected ? 'text-green' : 'text-gray'}}"  bindtap="toMessage">
-      <view class="{{messageSelected ? 'icon-markfill' : 'icon-mark'}}"></view>消息
-    </view>
-    <view class="action {{profileSelected ? 'text-green' : 'text-gray'}}" bindtap="toProfile">
-      <view class="{{profileSelected ? 'icon-myfill' : 'icon-my'}}"></view>我的
     </view>
   </view>
 </view>

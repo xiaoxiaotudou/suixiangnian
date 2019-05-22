@@ -5,6 +5,10 @@ Page({
     shares: []
   },
   onLoad: function(options) {
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
     this.getShares(1)
   },
   onShow: function() {
@@ -35,6 +39,7 @@ Page({
         currentPage: currentPage,
         total: result.total
       })
+      wx.hideLoading()
     }).catch(err => {
       console.log(err)
     })

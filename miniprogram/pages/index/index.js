@@ -1,50 +1,17 @@
-const config = require('../../config.js')
-const location = require('../../utils/location.js')
-const region = require('../../utils/region.js')
+const QQMapWX = require('../../libs/qqmap-wx-jssdk.min.js')
 
 Page({
   onLoad: function() {
-    this.checkAuthorization();
+    this.getLocation();
   },
   onShow: function() {
     const activeMember = wx.getStorageSync('activeMember')
-    this.setData({ address: activeMember.address})
-
-  },
-  checkAuthorization: function() {
-    if (!wx.getStorageSync('activeMember')) {
-      wx.cloud.callFunction({
-        name: 'router',
-        data: {
-          $url: 'user-findById',
-        }
-      }).then(res => {
-        const result = res.result
-        if (result.data.length == 0) {
-          wx.cloud.callFunction({
-            name: 'router',
-            data: {
-              $url: 'user-save',
-            }
-          }).then(res => {
-            const result = res.result
-            wx.setStorageSync('activeMember', result.data[0])
-            this.getLocationName()
-          }).catch(err => {
-            console.log(err)
-          })
-        } else {
-          wx.setStorageSync('activeMember', result.data[0])
-          this.getLocationName()
-        }
-      }).catch(err => {
-        console.log(err)
-      });
-    } else {
-      this.getLocationName()
+    if (activeMember.address) {
+      this.setData({ address: activeMember.address })
     }
   },
-  getLocationName: function() {
+  getLocation: function() {
+    const that = this
     let activeMember = wx.getStorageSync('activeMember')
     if (!activeMember.address) {
       wx.getSetting({
@@ -53,7 +20,7 @@ Page({
             wx.authorize({
               scope: "scope.userLocation",
               success() {
-
+                that.getAutoLocation()
               },
               fail() {
                 wx.navigateTo({
@@ -66,11 +33,44 @@ Page({
               url: '../province/index',
             })
           } else {
-            
+            that.getAutoLocation()
           }
         }
       })
     }
+  },
+  getAutoLocation: function() {
+    const that = this
+    wx.getLocation({
+      type: 'gcj02',
+      success(res) {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        const qqmapsdk = new QQMapWX({ key: 'DOWBZ-DFJWJ-TCIFD-KTQOE-MASNV-XUFDN' })
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: latitude,
+            longitude: longitude
+          },
+          success(res) {
+            const address = res.result.address
+            wx.cloud.callFunction({
+              name: 'router',
+              data: {
+                $url: 'user-updateAddress',
+                address: address
+              }
+            }).then(res => {
+              const result = res.result
+              that.setData({ address: address })
+              wx.setStorageSync('activeMember', result.data[0])
+            }).catch(err => {
+              console.log(err)
+            })
+          }
+        })
+      }
+    })
   },
   tapSelectAddress: function() {
     wx.navigateTo({

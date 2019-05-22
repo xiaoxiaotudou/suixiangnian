@@ -1,15 +1,17 @@
 {
   "pages": [
     "pages/splash/index",
-    "pages/share/share",
-    "pages/publish/index",
     "pages/index/index",
+    "pages/share/index",
+    "pages/publish/index",
     "pages/bill/bill",
     "pages/profile/profile",
     "pages/message/index",
     "pages/province/index",
     "pages/city/index",
-    "pages/county/index"
+    "pages/county/index",
+    "pages/advice/index",
+    "pages/helper/index"
   ],
   "usingComponents": {},
   "tabBar": {
@@ -22,7 +24,7 @@
         "selectedIconPath": "images/common/profile_unactive.png"
       },
       {
-        "pagePath": "pages/share/share",
+        "pagePath": "pages/share/index",
         "text": "干货",
         "iconPath": "images/common/profile_unactive.png",
         "selectedIconPath": "images/common/profile_unactive.png"

@@ -15,5 +15,15 @@ Page({
     wx.navigateTo({
       url: config.pages.bill,
     })
+  },
+  toAdvice: function() {
+    wx.navigateTo({
+      url: config.pages.advice,
+    })
+  },
+  toHelper: function () {
+    wx.navigateTo({
+      url: config.pages.helper,
+    })
   }
 })

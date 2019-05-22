@@ -1,6 +1,6 @@
 module.exports = {
   main: async (event, context, cloud, database) => {
-    database.collection('user').where({
+    await database.collection('user').where({
       _id: event._id,
       _openid: cloud.getWXContext().OPENID
     }).update({

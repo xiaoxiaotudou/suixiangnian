@@ -1,0 +1,21 @@
+textarea {
+  margin: 30rpx auto;
+  width: 690rpx;
+  height: 380rpx;
+  padding: 10rpx;
+  border-radius: 10rpx;
+  border: 1rpx dashed rgba(0, 0, 0, 0.6);
+}
+
+.submit-wrapper {
+  width: 690rpx;
+  height: 88rpx;
+  background-color: #FFB040;
+  color: #FFFFFF;
+  border-radius: 40rpx;
+  margin: auto;
+  font-size: 32rpx;
+  box-shadow: 0px 14rpx 14rpx 0rpx rgba(255, 176, 64, 0.25);
+  margin-top: 70rpx;
+  margin-bottom: 50rpx;
+}

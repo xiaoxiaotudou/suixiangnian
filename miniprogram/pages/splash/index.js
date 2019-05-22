@@ -10,7 +10,7 @@ Page({
       }
     }).then(res => {
       const result = res.result
-      if (result.data.length == 0) {
+      if (result.data.length === 0) {
         wx.cloud.callFunction({
           name: 'router',
           data: {
